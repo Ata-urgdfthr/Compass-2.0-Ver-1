@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NyuuLy Compass 2.0 — Wireframe Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* NyuuLy brand palette (Brand Guidelines v1.0) */
+    --ink:#171717;        /* Gray-900 */
+    --ink2:#818181;       /* Gray-600 */
+    --line:#e6e9f2; --bg:#f3f5fa;
+    --card:#ffffff;
+    --blue:#366CFF;       /* Blue-default */
+    --blue-d:#2A3CCA;     /* Primary blue */
+    --navy:#051C58;       /* Blue-darker */
+    --orange:#FFA555;     /* Soft orange */
+    --yellow:#FFD755;
+    --green:#02B93C;      /* Success */
+    --red:#A70000;        /* Error */
+    --amber:#C77A12;      /* legible warning text */
+    --soft:#eef2ff;       /* blue-light surface */
+    /* aliases kept so existing rules map to brand colors */
+    --teal:var(--blue); --teal-d:var(--blue-d);
+    --shadow:0 8px 26px rgba(5,28,88,.12);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Manrope',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);}
+  .h1,.caption h2,.dmain>div:first-child,.kpi .n{font-family:'Playfair Display',Georgia,serif;}
+  /* NyuuLy logo wordmark accent is orange */
+  header.top .logo span,.b-logo span,.dtop .b-logo span{color:var(--orange)!important}
+  .logo-ic{height:1.35em;width:auto;vertical-align:-0.28em;margin-right:6px}
+  header.top{background:var(--navy);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:20}
+  header.top .logo{font-weight:800;letter-spacing:.3px;font-size:18px}
+  header.top .logo span{color:var(--teal)}
+  header.top .tag{font-size:12px;color:#9fb3c8;border-left:1px solid #34516e;padding-left:14px}
+  .layout{display:flex;min-height:calc(100vh - 52px)}
+  nav.side{width:230px;background:#fff;border-right:1px solid var(--line);padding:16px 12px;flex-shrink:0}
+  nav.side .grp{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--ink2);margin:16px 8px 6px}
+  nav.side button{display:block;width:100%;text-align:left;border:0;background:none;padding:9px 12px;border-radius:9px;
+    font-size:13.5px;color:var(--ink);cursor:pointer;margin-bottom:2px}
+  nav.side button:hover{background:var(--soft)}
+  nav.side button.active{background:var(--teal);color:#fff;font-weight:600}
+  main.stage{flex:1;padding:34px;display:flex;flex-direction:column;align-items:center;overflow:auto}
+  .screen{display:none;width:100%;align-items:flex-start;justify-content:center;gap:30px;flex-wrap:wrap}
+  .screen.show{display:flex}
+  .caption{max-width:300px}
+  .caption h2{font-size:18px;margin:0 0 8px}
+  .caption p{font-size:13.5px;color:var(--ink2);line-height:1.6;margin:0 0 10px}
+  .caption .pill{display:inline-block;background:#e3ecff;color:var(--teal-d);font-size:11px;font-weight:600;
+    padding:3px 9px;border-radius:20px;margin:2px 4px 2px 0}
+
+  /* Phone frame */
+  .phone{width:392px;background:#fff;border-radius:34px;box-shadow:var(--shadow);border:9px solid var(--navy);overflow:hidden;flex-shrink:0}
+  .phone .notch{height:26px;background:var(--navy)}
+  .pscreen{height:720px;overflow-y:auto;background:var(--soft)}
+  .pscreen::-webkit-scrollbar{width:0}
+  .appbar{background:#fff;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  .appbar .b-logo{font-weight:800;font-size:15px}
+  .appbar .b-logo span{color:var(--teal)}
+  .pad{padding:18px}
+  .h1{font-size:21px;font-weight:800;margin:2px 0 4px}
+  .sub{font-size:13px;color:var(--ink2);margin-bottom:16px;line-height:1.5}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+  label.f{display:block;font-size:12px;font-weight:600;color:var(--ink2);margin:12px 0 5px}
+  .input{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:14px;background:#fff;color:var(--ink)}
+  .input.ro{background:var(--soft);color:var(--ink2)}
+  .btn{display:block;width:100%;border:0;border-radius:12px;padding:13px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;margin-top:14px}
+  .btn.primary{background:var(--teal);color:#fff}
+  .btn.primary:hover{background:var(--teal-d)}
+  .btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .btn.sm{padding:9px;font-size:13px;width:auto;display:inline-block;margin:0}
+  .or{display:flex;align-items:center;gap:10px;color:var(--ink2);font-size:12px;margin:14px 0}
+  .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+  .social{display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;font-weight:600;background:#fff;cursor:pointer}
+  .muted{font-size:12px;color:var(--ink2);text-align:center;margin-top:14px}
+  .link{color:var(--teal-d);font-weight:600;cursor:pointer}
+
+  /* compliance ring */
+  .scorecard{background:linear-gradient(135deg,var(--navy),var(--blue-d));color:#fff;border-radius:18px;padding:18px;display:flex;align-items:center;gap:18px;margin-bottom:16px}
+  .ring{width:84px;height:84px;border-radius:50%;background:conic-gradient(var(--teal) 0 71%,#34528f 71% 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ring .inner{width:64px;height:64px;border-radius:50%;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .inner b{font-size:21px}.ring .inner span{font-size:9px;color:#9fb3c8}
+  .scorecard h3{margin:0 0 4px;font-size:15px}
+  .scorecard p{margin:0;font-size:12.5px;color:#d6e6e3;line-height:1.4}
+
+  /* journey path */
+  .journey{position:relative;padding:6px 4px 2px}
+  .step{display:flex;align-items:center;gap:12px;padding:10px 6px;border-radius:12px;cursor:pointer}
+  .step:hover{background:#fff}
+  .dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;border:2px solid var(--line);background:#fff;color:var(--ink2)}
+  .dot.done{background:var(--green);border-color:var(--green);color:#fff}
+  .dot.now{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:0 0 0 4px #d9e3ff}
+  .step .lbl{font-size:14px;font-weight:600}
+  .step .meta{font-size:11px;color:var(--ink2)}
+  .connector{height:16px;width:2px;background:var(--line);margin-left:22px}
+
+  .reminder{display:flex;gap:10px;align-items:flex-start;background:#FFE7D9;border:1px solid #ffd3b3;border-radius:12px;padding:11px 13px;margin-bottom:10px}
+  .reminder.red{background:#FFE2E2;border-color:#f3c4c4}
+  .reminder .ic{font-size:16px}
+  .reminder .t{font-size:13px;font-weight:600}
+  .reminder .d{font-size:11.5px;color:var(--ink2)}
+
+  .bottomnav{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:9px 0}
+  .bottomnav div{font-size:10px;color:var(--ink2);text-align:center;display:flex;flex-direction:column;gap:3px;align-items:center;cursor:pointer}
+  .bottomnav .ic{font-size:18px}
+  .bottomnav .on{color:var(--teal-d);font-weight:700}
+
+  /* task list */
+  .task{display:flex;gap:11px;padding:13px;border:1px solid var(--line);border-radius:13px;margin-bottom:10px;background:#fff;align-items:flex-start}
+  .check{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer}
+  .check.on{background:var(--green);border-color:var(--green);color:#fff}
+  .task .tt{font-size:13.5px;font-weight:600}
+  .task .td{font-size:11.5px;color:var(--ink2);margin-top:3px;line-height:1.45}
+  .badge{font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:20px;text-transform:uppercase;letter-spacing:.4px;display:inline-block;margin-top:6px}
+  .badge.must{background:#FFE2E2;color:var(--red)}
+  .badge.rec{background:#e3ecff;color:var(--blue-d)}
+  .badge.opt{background:#eef0f2;color:#6b7480}
+
+  /* toggles */
+  .togrow{display:flex;align-items:center;justify-content:space-between;padding:11px 4px;border-bottom:1px solid var(--line)}
+  .togrow:last-child{border-bottom:0}
+  .togrow .n{font-size:13.5px;font-weight:600}
+  .sw{width:42px;height:24px;border-radius:20px;background:#cdd5de;position:relative;cursor:pointer;flex-shrink:0;transition:.2s}
+  .sw::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}
+  .sw.on{background:var(--teal)}
+  .sw.on::after{left:21px}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:var(--soft);border:1px solid var(--line);border-radius:20px;padding:6px 11px;font-size:12px;margin:0 6px 6px 0}
+  .chip b{font-weight:600}
+  .sharerow{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;background:#fff}
+  .sharerow:hover{border-color:var(--blue)}
+  .managepanel{display:none;border-top:1px dashed var(--line);margin-top:10px;padding-top:4px}
+  .managepanel.open{display:block}
+
+  /* viewer banner */
+  .viewbanner{background:var(--navy);color:#fff;font-size:12px;padding:9px 14px;display:flex;align-items:center;gap:8px}
+
+  /* form scan */
+  .scanbox{border:2px dashed var(--teal);border-radius:16px;background:#fff;padding:30px 16px;text-align:center;color:var(--ink2)}
+  .scanbox .big{font-size:34px}
+  .formdoc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:12px;color:var(--ink2)}
+  .ffield{border:1px solid var(--line);border-radius:9px;padding:9px 11px;margin-bottom:9px;background:#fff}
+  .ffield .jp{font-size:11px;color:var(--ink2)}
+  .ffield .en{font-size:10.5px;color:var(--teal-d);margin:2px 0 5px}
+  .ffield .val{font-size:14px;font-weight:600;color:var(--ink)}
+  .ffield.auto{border-color:#c5d2ff;background:#f1f5ff}
+
+  /* desktop university frame */
+  .desktop{width:980px;max-width:100%;background:#fff;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line)}
+  .dtop{background:var(--navy);color:#fff;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+  .dtop .b-logo{font-weight:800}.dtop .b-logo span{color:var(--teal)}
+  .dbody{display:flex}
+  .dside{width:180px;background:#041444;color:#cfe0ee;padding:16px 10px;font-size:13px}
+  .dside div{padding:9px 12px;border-radius:8px;margin-bottom:2px;cursor:pointer}
+  .dside div.on{background:var(--teal);color:#fff;font-weight:600}
+  .dmain{flex:1;padding:22px;background:#f7f9fb}
+  .kpis{display:flex;gap:14px;margin-bottom:18px}
+  .kpi{flex:1;background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px}
+  .kpi .n{font-size:26px;font-weight:800}
+  .kpi .l{font-size:12px;color:var(--ink2)}
+  .kpi.green .n{color:var(--green)} .kpi.amber .n{color:var(--amber)} .kpi.red .n{color:var(--red)}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;font-size:13px}
+  th{text-align:left;background:#eef3f7;padding:11px 13px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink2)}
+  td{padding:12px 13px;border-top:1px solid var(--line)}
+  .stat{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
+  .stat.ok{background:#D5FBE4;color:#027a30}
+  .stat.risk{background:#FFE7D9;color:var(--amber)}
+  .stat.crit{background:#FFE2E2;color:var(--red)}
+  .yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}.ns{color:#9aa3ad}
+  .mini{font-size:11px;color:var(--ink2);margin-top:10px}
+  .hint{font-size:12px;color:var(--ink2);text-align:center;margin-top:22px;max-width:560px;line-height:1.6}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="logo"><img class="logo-ic" src="nyuuly-icon-white.svg" alt="">nyuu<span>ly</span> · Compass 2.0</div>
+  <div class="tag">Clickable wireframe prototype — mid-fidelity · for team review</div>
+</header>
+
+<div class="layout">
+  <nav class="side" id="nav">
+    <div class="grp">① Onboarding</div>
+    <button data-s="signup">Sign up / Log in</button>
+    <button data-s="profile">Profile setup (visa type)</button>
+    <div class="grp">② Dashboard</div>
+    <button data-s="home" class="active">Dashboard home</button>
+    <button data-s="section">Section detail · City Hall</button>
+    <div class="grp">③ Sharing</div>
+    <button data-s="share">Share settings</button>
+    <button data-s="viewer">Viewer read-only view</button>
+    <div class="grp">④ Form filling</div>
+    <button data-s="fupload">Scan / upload form</button>
+    <button data-s="freview">Auto-fill review</button>
+    <button data-s="foutput">PDF output</button>
+    <div class="grp">⑤ University (later)</div>
+    <button data-s="uni">Master dashboard</button>
+  </nav>
+
+  <main class="stage">
+
+    <!-- SIGN UP -->
+    <section class="screen" id="s-signup">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="pad">
+          <div class="b-logo" style="font-weight:800;font-size:19px;margin-bottom:18px"><img class="logo-ic" src="nyuuly-icon.svg" alt="">nyuu<span>ly</span> <span style="color:var(--ink);font-weight:700">Compass</span></div>
+          <div class="h1">Welcome 👋</div>
+          <div class="sub">Sign in with a one-time code — no password to remember. Save your progress, fill your forms, settle in with confidence.</div>
+          <div class="card">
+            <label class="f">Email or phone number</label>
+            <input class="input" value="jessie.tan@email.com">
+            <button class="btn primary" onclick="document.getElementById('otpstep').style.display='block'">Send me a code</button>
+
+            <div id="otpstep" style="display:none">
+              <label class="f" style="margin-top:18px">Enter the 6-digit code we sent you</label>
+              <div style="display:flex;gap:8px;justify-content:space-between">
+                <input class="input" style="text-align:center;font-size:20px;font-weight:700" maxlength="1" value="4">
+                <input class="input" style="text-align:center;font-size:20px;font-weight:700" maxlength="1" value="9">
+                <input class="input" style="text-align:center;font-size:20px;font-weight:700" maxlength="1" value="2">
+                <input class="input" style="text-align:center;font-size:20px;font-weight:700" maxlength="1" value="0">
+                <input class="input" style="text-align:center;font-size:20px;font-weight:700" maxlength="1" value="7">
+                <input class="input" style="text-align:center;font-size:20px;font-weight:700" maxlength="1" value="1">
+              </div>
+              <div style="font-size:11.5px;color:var(--ink2);margin-top:8px">Didn't get it? <span class="link">Resend code</span> · code expires in 5:00</div>
+              <button class="btn primary" onclick="go('profile')">Verify &amp; continue</button>
+            </div>
+
+            <div class="or">or</div>
+            <div class="social" onclick="go('profile')">🔵 Continue with Google</div>
+          </div>
+          <div class="muted">By continuing you agree to our Terms &amp; Privacy Policy (APPI-compliant).</div>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Sign up / Log in — OTP</h2>
+        <p>Passwordless. The user enters their email or phone, gets a one-time code, and verifies. Lower friction, more secure, nothing to forget. Google sign-in stays as an alternative.</p>
+        <span class="pill">OTP / passwordless</span><span class="pill">Email or phone</span><span class="pill">APPI consent</span>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="screen" id="s-profile">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="appbar"><div class="b-logo"><img class="logo-ic" src="nyuuly-icon.svg" alt="">nyuu<span>ly</span></div><div style="font-size:12px;color:var(--ink2)">Step 1 of 2</div></div>
+        <div class="pad">
+          <div class="h1">Tell us about you</div>
+          <div class="sub">We use this to personalize your checklist and auto-fill your forms. Your visa type sets your journey.</div>
+          <div class="card">
+            <label class="f">Visa type</label>
+            <select class="input"><option>Student</option><option>Engineer / Specialist in Humanities</option><option>Dependent</option><option>Working Holiday</option><option>Highly Skilled Professional</option></select>
+            <label class="f">Full name (romaji)</label>
+            <input class="input" value="Jessie Tan">
+            <label class="f">Name in katakana <span style="color:var(--teal-d)">· auto-generated, editable</span></label>
+            <input class="input" value="ジェシー・タン">
+            <label class="f">Nationality</label>
+            <input class="input" value="Malaysia">
+            <label class="f">Date of birth</label>
+            <input class="input" value="2003 / 05 / 14">
+            <label class="f">Phone number</label>
+            <input class="input" value="+81 80 1234 5678">
+            <label class="f">Japan arrival date <span style="color:var(--ink2)">· past dates are fine</span></label>
+            <input class="input" value="2026 / 04 / 02">
+            <label class="f">Residence status expiry (visa)</label>
+            <input class="input" value="2026 / 11 / 16">
+
+            <label class="f">Address in Japan</label>
+            <div class="scanbox" style="padding:16px 14px;margin-bottom:8px" onclick="document.getElementById('ocrAddr').style.display='block';this.style.display='none'">
+              <div style="font-size:24px">🪪</div>
+              <div style="font-weight:700;color:var(--ink);font-size:13px;margin-top:4px">Upload your Residence Card</div>
+              <div style="font-size:11.5px">We'll read your address automatically — no typing</div>
+            </div>
+            <div id="ocrAddr" style="display:none">
+              <div style="font-size:11.5px;color:var(--blue-d);font-weight:600;margin-bottom:5px">✓ Address read from your Residence Card — please confirm</div>
+              <input class="input" value="東京都新宿区西早稲田 2-1-1">
+            </div>
+
+            <button class="btn primary" onclick="go('home')">Save &amp; see my dashboard</button>
+          </div>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Profile setup</h2>
+        <p>One profile feeds both the checklist and form filling. Visa type drives the persona checklist; katakana name is auto-generated and editable. Adds phone, Japan arrival date (past OK), and an <b>address you can fill by uploading your Residence Card</b> — OCR reads the address for you.</p>
+        <span class="pill">Persona by visa type</span><span class="pill">Arrival date</span><span class="pill">Residence Card OCR → address</span>
+      </div>
+    </section>
+
+    <!-- DASHBOARD HOME -->
+    <section class="screen show" id="s-home">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="appbar"><div class="b-logo"><img class="logo-ic" src="nyuuly-icon.svg" alt="">nyuu<span>ly</span></div><div style="font-size:18px">🔔</div></div>
+        <div class="pad">
+          <div class="h1">Hi Jessie 👋</div>
+          <div class="sub">You're making great progress. Keep going!</div>
+
+          <div class="scorecard">
+            <div class="ring"><div class="inner"><b>71%</b><span>COMPLIANT</span></div></div>
+            <div>
+              <h3>Compliance score</h3>
+              <p>3 mandatory items left. Finish them to reach 100% and stay fully compliant.</p>
+            </div>
+          </div>
+
+          <div class="reminder red"><div class="ic">⏰</div><div><div class="t">Visa expires in 142 days</div><div class="d">Nov 16, 2026 · start renewal early</div></div></div>
+          <div class="reminder"><div class="ic">📍</div><div><div class="t">Register your residency</div><div class="d">Within 14 days of getting your address</div></div></div>
+
+          <div style="font-size:14px;font-weight:800;margin:16px 2px 6px">Your journey</div>
+          <div class="journey">
+            <div class="step" onclick="go('section')"><div class="dot done">✓</div><div><div class="lbl">Arrival at Airport</div><div class="meta">Completed · 3/3</div></div></div>
+            <div class="connector"></div>
+            <div class="step" onclick="go('section')"><div class="dot done">✓</div><div><div class="lbl">Finding Your Home</div><div class="meta">Completed · 6/6</div></div></div>
+            <div class="connector"></div>
+            <div class="step" onclick="go('section')"><div class="dot now">◉</div><div><div class="lbl">City Hall Paperwork</div><div class="meta">In progress · 4/6 · tap to open</div></div></div>
+            <div class="connector"></div>
+            <div class="step" onclick="go('section')"><div class="dot">3</div><div><div class="lbl">Opening a Bank Account</div><div class="meta">Not started · 0/3</div></div></div>
+            <div class="connector"></div>
+            <div class="step" onclick="go('section')"><div class="dot">4</div><div><div class="lbl">Getting a Phone Number</div><div class="meta">Not started · 0/2</div></div></div>
+            <div class="connector"></div>
+            <div class="step" onclick="go('section')"><div class="dot">5</div><div><div class="lbl">Part-time Work Permit</div><div class="meta">Not started · 0/1</div></div></div>
+          </div>
+
+          <button class="btn primary" onclick="go('fupload')">📄 Fill a form</button>
+          <button class="btn ghost" onclick="go('share')">🔗 Share my dashboard</button>
+        </div>
+        <div class="bottomnav">
+          <div class="on"><span class="ic">🏠</span>Home</div>
+          <div onclick="go('section')"><span class="ic">✅</span>Tasks</div>
+          <div onclick="go('fupload')"><span class="ic">📄</span>Forms</div>
+          <div onclick="go('share')"><span class="ic">🔗</span>Share</div>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Dashboard home</h2>
+        <p>The heart of the product. Compliance score (% of mandatory done) gives instant peace of mind. The journey is a game-style path — completed sections light up, "you are here" is clear. Reminders surface what's urgent.</p>
+        <span class="pill">Compliance score</span><span class="pill">Game-path journey</span><span class="pill">Saved progress</span>
+      </div>
+    </section>
+
+    <!-- SECTION DETAIL -->
+    <section class="screen" id="s-section">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="appbar"><div style="font-size:13px;color:var(--teal-d);cursor:pointer;font-weight:600" onclick="go('home')">‹ Back</div><div style="font-size:12px;color:var(--ink2)">4 / 6 done</div></div>
+        <div class="pad">
+          <div class="h1">City Hall Paperwork</div>
+          <div class="sub">Complete these within 2 weeks of deciding your address. These are the items the university most wants to see.</div>
+
+          <div class="task"><div class="check on">✓</div><div><div class="tt">Register your residency (Jūmin Tōroku)</div><div class="td">Staff update the address on the back of your Residence Card the same day.</div><span class="badge must">Mandatory</span></div></div>
+          <div class="task"><div class="check on">✓</div><div><div class="tt">Decide katakana name spelling</div><div class="td">Needed for pension and bank account. Save it so you don't have to fix mistakes later.</div><span class="badge rec">Recommended</span></div></div>
+          <div class="task"><div class="check">✓</div><div><div class="tt">Receive your Individual Number notice</div><div class="td">Keep the 12-digit My Number. Apply for the card online after.</div><span class="badge must">Mandatory</span></div></div>
+          <div class="task"><div class="check on">✓</div><div><div class="tt">Request Certificate of Residence (Jūminhyō)</div><div class="td">Official proof of your registered address.</div><span class="badge rec">Recommended</span></div></div>
+          <div class="task"><div class="check">✓</div><div><div class="tt">Confirm Health Insurance &amp; Pension</div><div class="td">If your sponsor enrolls you in Shakai Hoken, you don't enroll here. Confirm it.</div><span class="badge rec">Recommended</span></div></div>
+          <div class="task"><div class="check on">✓</div><div><div class="tt">Prepare documents to bring</div><div class="td">Residence Card, passport, school address.</div><span class="badge opt">Optional</span></div></div>
+
+          <button class="btn primary" onclick="go('fupload')">📄 Fill the related form</button>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Section detail</h2>
+        <p>Tapping a journey step opens its tasks. Each task is tagged Mandatory / Recommended / Optional — only <b>Mandatory</b> counts toward the compliance score. Checking items saves instantly and updates the score + journey.</p>
+        <span class="pill">Mandatory / Rec / Optional</span><span class="pill">Drives the score</span>
+      </div>
+    </section>
+
+    <!-- SHARE SETTINGS -->
+    <section class="screen" id="s-share">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="appbar"><div style="font-size:13px;color:var(--teal-d);cursor:pointer;font-weight:600" onclick="go('home')">‹ Back</div><div class="b-logo">Share</div></div>
+        <div class="pad">
+          <div class="h1">Share your dashboard</div>
+          <div class="sub">Invite someone by email to view your progress. They see only what you choose, can never edit, and you can revoke anytime.</div>
+
+          <div class="card">
+            <label class="f">Invite by email</label>
+            <div style="display:flex;gap:8px">
+              <input class="input" value="office@uni.ac.jp" style="flex:1">
+              <button class="btn primary sm" style="margin:0">Invite</button>
+            </div>
+            <div style="font-size:11px;color:var(--ink2);margin-top:8px">🔒 Named-email invites only — no public links.</div>
+
+            <label class="f" style="margin-top:16px">What can they see?</label>
+            <div class="togrow"><div class="n">City Hall Paperwork</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+            <div class="togrow"><div class="n">Part-time Work Permit</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+            <div class="togrow"><div class="n">Daily Life</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+            <div class="togrow"><div class="n">Finding Your Home</div><div class="sw" onclick="this.classList.toggle('on')"></div></div>
+            <div class="togrow"><div class="n">Opening a Bank Account</div><div class="sw" onclick="this.classList.toggle('on')"></div></div>
+            <div class="togrow"><div class="n">Getting a Phone Number</div><div class="sw" onclick="this.classList.toggle('on')"></div></div>
+          </div>
+
+          <div class="card">
+            <label class="f" style="margin-top:0">Shared with (tap to manage)</label>
+
+            <!-- person row 1, collapsed -->
+            <div class="sharerow" onclick="toggleManage('m1')">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <div><div style="font-size:13.5px;font-weight:700">🏫 office@tuj.temple.edu</div><div style="font-size:11px;color:var(--ink2)">Temple University Japan · 3 of 6 sections</div></div>
+                <div style="font-size:12px;color:var(--blue-d);font-weight:700">Manage ›</div>
+              </div>
+              <div id="m1" class="managepanel" onclick="event.stopPropagation()">
+                <div style="font-size:11.5px;color:var(--ink2);margin:10px 0 6px">Change what they can see — updates instantly, no need to message them.</div>
+                <div class="togrow"><div class="n">City Hall Paperwork</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="togrow"><div class="n">Part-time Work Permit</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="togrow"><div class="n">Daily Life</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="togrow"><div class="n">Opening a Bank Account</div><div class="sw" onclick="this.classList.toggle('on')"></div></div>
+                <div style="display:flex;gap:8px;margin-top:10px">
+                  <button class="btn primary sm">Save changes</button>
+                  <button class="btn ghost sm" onclick="go('viewer')">Preview as them</button>
+                  <button class="btn ghost sm" style="color:var(--red);border-color:#f3c9c2">Revoke all</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- person row 2, collapsed -->
+            <div class="sharerow" onclick="toggleManage('m2')">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <div><div style="font-size:13.5px;font-weight:700">👪 mum@email.com</div><div style="font-size:11px;color:var(--ink2)">Parent · all 6 sections</div></div>
+                <div style="font-size:12px;color:var(--blue-d);font-weight:700">Manage ›</div>
+              </div>
+              <div id="m2" class="managepanel" onclick="event.stopPropagation()">
+                <div style="font-size:11.5px;color:var(--ink2);margin:10px 0 6px">Currently sharing everything. Turn off any section to hide it from her.</div>
+                <div class="togrow"><div class="n">All sections</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+                <div style="display:flex;gap:8px;margin-top:10px">
+                  <button class="btn primary sm">Save changes</button>
+                  <button class="btn ghost sm" style="color:var(--red);border-color:#f3c9c2">Revoke all</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Share settings</h2>
+        <p>The differentiator. Like a Google Sheet: invite by named email, pick per-section visibility (or all), revoke per-person anytime. <b>To change an existing share, tap the person under "Shared with"</b> — their section toggles reappear pre-set to what they currently see; flip any and Save. The change is instant and the viewer's screen updates live — no message needed.</p>
+        <span class="pill">Named-email only</span><span class="pill">Edit a share anytime</span><span class="pill">Instant + revocable</span>
+      </div>
+    </section>
+
+    <!-- VIEWER VIEW -->
+    <section class="screen" id="s-viewer">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="viewbanner">👁️ You're viewing Jessie's dashboard (read-only) · shared 3 of 6 sections</div>
+        <div class="appbar"><div class="b-logo"><img class="logo-ic" src="nyuuly-icon.svg" alt="">nyuu<span>ly</span></div><div style="font-size:12px;color:var(--ink2)">Viewer</div></div>
+        <div class="pad">
+          <div class="h1">Jessie Tan</div>
+          <div class="sub">Student · visa expires Nov 16, 2026</div>
+          <div class="scorecard">
+            <div class="ring"><div class="inner"><b>71%</b><span>COMPLIANT</span></div></div>
+            <div><h3>Compliance score</h3><p>Based on the sections Jessie has shared with you.</p></div>
+          </div>
+          <div class="reminder" style="background:var(--soft);border-color:#cdd9ff"><div class="ic">⏭️</div><div><div class="t">Coming up next: Apply for My Number Card</div><div class="d">City Hall · due within 2 weeks · shown because Jessie shared this section</div></div></div>
+
+          <div style="font-size:14px;font-weight:800;margin:8px 2px 8px">Shared sections</div>
+          <div class="task"><div class="check on">✓</div><div><div class="tt">City Hall Paperwork</div><div class="td">4 / 6 complete · next: My Number Card</div></div></div>
+          <div class="task"><div class="check">✓</div><div><div class="tt">Part-time Work Permit</div><div class="td">0 / 1 complete · next: submit form at Immigration</div></div></div>
+          <div class="task"><div class="check on">✓</div><div><div class="tt">Daily Life</div><div class="td">3 / 3 complete · all done 🎉</div></div></div>
+          <div class="card" style="text-align:center;color:var(--ink2);font-size:12.5px;background:var(--soft)">🔒 3 sections are private and not shared with you.</div>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Viewer read-only view</h2>
+        <p>What a university officer or parent sees after accepting an invite. Read-only, only the shared sections. Now also shows <b>"what's coming up next"</b> for each shared section — so the viewer can see upcoming deadlines and offer help early. Private sections stay locked (not "incomplete").</p>
+        <span class="pill">Read-only</span><span class="pill">Shows what's next</span><span class="pill">Private = locked</span>
+      </div>
+    </section>
+
+    <!-- FORM UPLOAD -->
+    <section class="screen" id="s-fupload">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="appbar"><div style="font-size:13px;color:var(--teal-d);cursor:pointer;font-weight:600" onclick="go('home')">‹ Back</div><div class="b-logo">Form filling</div></div>
+        <div class="pad">
+          <div class="h1">Fill a Japanese form</div>
+          <div class="sub">Photograph or upload a form. Multi-page forms are fine — capture each page and we'll handle them as one document.</div>
+          <div class="scanbox">
+            <div class="big">📷</div>
+            <div style="font-weight:700;color:var(--ink);margin:8px 0 4px">Scan your form</div>
+            <div style="font-size:12px">Line it up inside the guide frame</div>
+            <button class="btn primary" onclick="document.getElementById('pagestrip').style.display='block'" style="max-width:200px;margin:16px auto 0">Take photo</button>
+            <button class="btn ghost" onclick="document.getElementById('pagestrip').style.display='block'" style="max-width:200px;margin:8px auto 0">Upload from gallery</button>
+          </div>
+
+          <!-- multi-page capture -->
+          <div id="pagestrip" style="display:none">
+            <div class="card">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+                <label class="f" style="margin:0">Captured pages (2)</label>
+                <span style="font-size:11px;color:var(--ink2)">drag ⠿ to reorder</span>
+              </div>
+              <div style="display:flex;gap:10px">
+                <div style="flex:1;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center;background:#fff">
+                  <div style="font-size:26px">📄</div><div style="font-size:11px;font-weight:700">Page 1</div>
+                  <div style="font-size:9px;color:var(--ink2)">front</div>
+                  <div style="font-size:11px;color:var(--ink2);margin-top:4px">⠿ &nbsp; 🔁 &nbsp; 🗑️</div>
+                </div>
+                <div style="flex:1;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center;background:#fff">
+                  <div style="font-size:26px">📄</div><div style="font-size:11px;font-weight:700">Page 2</div>
+                  <div style="font-size:9px;color:var(--ink2)">back</div>
+                  <div style="font-size:11px;color:var(--ink2);margin-top:4px">⠿ &nbsp; 🔁 &nbsp; 🗑️</div>
+                </div>
+                <div style="flex:1;border:2px dashed var(--blue);border-radius:10px;padding:10px;text-align:center;color:var(--blue-d);display:flex;flex-direction:column;justify-content:center;cursor:pointer">
+                  <div style="font-size:22px">＋</div><div style="font-size:10px;font-weight:700">Add page</div>
+                </div>
+              </div>
+              <button class="btn primary" onclick="go('freview')">Continue with 2 pages →</button>
+            </div>
+          </div>
+
+          <div style="font-size:14px;font-weight:800;margin:18px 2px 8px">Supported now</div>
+          <div class="task"><div style="font-size:18px">✅</div><div><div class="tt">Moving-in Notification (転入届)</div><div class="td">City hall · most common first form</div></div></div>
+          <div class="task"><div style="font-size:18px">✅</div><div><div class="tt">Certificate of Residence request (住民票)</div><div class="td">City hall</div></div></div>
+          <div class="task" style="opacity:.55"><div style="font-size:18px">🔜</div><div><div class="tt">National Health Insurance enrollment</div><div class="td">Coming soon</div></div></div>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Scan / upload form</h2>
+        <p>One headline pillar. Now supports <b>multi-page capture</b> — photograph each page, reorder or delete pages, and submit them as one document set. Recognition uses a pre-built template library (forms stored in-system, AI trained on each field) for accuracy, not blind OCR. MVP ships a thin slice of 1–2 high-frequency forms.</p>
+        <span class="pill">Multi-page scan</span><span class="pill">Reorder pages</span><span class="pill">Template library</span>
+      </div>
+    </section>
+
+    <!-- FORM REVIEW -->
+    <section class="screen" id="s-freview">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="appbar"><div style="font-size:13px;color:var(--teal-d);cursor:pointer;font-weight:600" onclick="go('fupload')">‹ Back</div><div style="font-size:12px;color:var(--ink2)">Review</div></div>
+        <div class="pad">
+          <div class="h1">Moving-in Notification</div>
+          <div class="sub">We filled these from your profile. Tap any field to edit. Each one is explained in English.</div>
+
+          <div class="ffield auto"><div class="jp">氏名 (フリガナ)</div><div class="en">Full name in katakana</div><div class="val">ジェシー・タン</div></div>
+          <div class="ffield auto"><div class="jp">生年月日</div><div class="en">Date of birth</div><div class="val">2003年5月14日</div></div>
+          <div class="ffield auto"><div class="jp">国籍</div><div class="en">Nationality</div><div class="val">マレーシア (Malaysia)</div></div>
+          <div class="ffield auto"><div class="jp">在留資格</div><div class="en">Residence status</div><div class="val">留学 (Student)</div></div>
+          <div class="ffield"><div class="jp">新住所</div><div class="en">New address — please confirm</div><div class="val" style="color:var(--ink2)">Tap to enter…</div></div>
+          <div class="ffield auto"><div class="jp">在留カード番号</div><div class="en">Residence card number</div><div class="val">AB12345678CD</div></div>
+
+          <div style="font-size:11.5px;color:var(--ink2);background:var(--soft);border-radius:10px;padding:11px;margin-top:6px">ℹ️ This is input assistance only. You review, sign, and submit the form yourself at the counter.</div>
+          <button class="btn primary" onclick="go('foutput')">Looks good — generate PDF</button>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Auto-fill review</h2>
+        <p>Profile data mapped into the real Japanese fields, each explained in English. Auto-filled fields are highlighted; anything we can't know (new address) is flagged for the user. Legal line keeps it "input assistance, not preparation."</p>
+        <span class="pill">English explanations</span><span class="pill">Editable</span><span class="pill">Legal-safe</span>
+      </div>
+    </section>
+
+    <!-- FORM OUTPUT -->
+    <section class="screen" id="s-foutput">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="appbar"><div style="font-size:13px;color:var(--teal-d);cursor:pointer;font-weight:600" onclick="go('freview')">‹ Back</div><div style="font-size:12px;color:var(--ink2)">Done</div></div>
+        <div class="pad" style="text-align:center">
+          <div style="font-size:46px;margin:10px 0">🎉</div>
+          <div class="h1">Your form is ready!</div>
+          <div class="sub">Download it, then print and submit it yourself at the city hall counter.</div>
+          <div class="formdoc" style="text-align:left;margin-bottom:16px">
+            <div style="font-weight:700;color:var(--ink);text-align:center;margin-bottom:8px">転入届 — Moving-in Notification</div>
+            <div style="border-top:1px solid var(--line);padding-top:8px;line-height:1.9">
+              氏名: ジェシー・タン<br>生年月日: 2003年5月14日<br>国籍: マレーシア<br>在留資格: 留学<br>新住所: 東京都新宿区…<br>在留カード: AB12345678CD<br><span style="color:var(--red)">署名 ✍️ (sign by hand)</span> · <span style="color:var(--red)">印 (seal)</span>
+            </div>
+          </div>
+          <button class="btn primary">⬇️ Download PDF</button>
+          <button class="btn ghost">🏪 Print at konbini <span style="font-size:10px;color:var(--ink2)">(coming soon)</span></button>
+          <div class="muted">Saved to your <span class="link">Document history</span></div>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>PDF output</h2>
+        <p>A print-ready PDF with hand-sign/seal fields flagged. Konbini printing is a fast-follow. Everything is saved to document history for re-download.</p>
+        <span class="pill">PDF download</span><span class="pill">Konbini print (later)</span><span class="pill">History</span>
+      </div>
+    </section>
+
+    <!-- UNIVERSITY MASTER -->
+    <section class="screen" id="s-uni">
+      <div style="width:100%;display:flex;flex-direction:column;align-items:center">
+      <div class="desktop">
+        <div class="dtop"><div class="b-logo"><img class="logo-ic" src="nyuuly-icon-white.svg" alt="">nyuu<span>ly</span> Compass · University Admin</div><div style="font-size:13px;color:#9fb3c8">Temple University Japan (TUJ)</div></div>
+        <div class="dbody">
+          <div class="dside">
+            <div class="on">📊 Overview</div><div>👥 Students</div><div>🔔 Alerts</div><div>📑 Reports</div><div>✉️ Communications</div><div>⚙️ Settings</div>
+          </div>
+          <div class="dmain">
+            <div style="font-size:18px;font-weight:800;margin-bottom:4px">Student compliance overview</div>
+            <div style="font-size:13px;color:var(--ink2);margin-bottom:16px">Live view of 124 students who have shared their dashboard with you.</div>
+            <div class="kpis">
+              <div class="kpi green"><div class="n">82</div><div class="l">On track</div></div>
+              <div class="kpi amber"><div class="n">31</div><div class="l">At risk</div></div>
+              <div class="kpi red"><div class="n">11</div><div class="l">Critical</div></div>
+              <div class="kpi"><div class="n">124</div><div class="l">Sharing with you</div></div>
+            </div>
+            <table>
+              <tr><th>Student</th><th>Nationality</th><th>Visa expiry</th><th>City Hall</th><th>My Number</th><th>Score</th><th>Status</th></tr>
+              <tr><td>Nguyen Anh Minh</td><td>Vietnam</td><td>25 days</td><td class="yes">✅</td><td class="yes">✅</td><td>92%</td><td><span class="stat ok">On track</span></td></tr>
+              <tr><td>Kim Minseo</td><td>South Korea</td><td>40 days</td><td class="ns">— not shared</td><td class="yes">✅</td><td>61%</td><td><span class="stat risk">At risk</span></td></tr>
+              <tr><td>Chen Wei</td><td>China</td><td>53 days</td><td class="no">❌</td><td class="no">❌</td><td>34%</td><td><span class="stat crit">Critical</span></td></tr>
+              <tr><td>Rahman Aisha</td><td>Bangladesh</td><td>70 days</td><td class="yes">✅</td><td class="yes">✅</td><td>88%</td><td><span class="stat ok">On track</span></td></tr>
+              <tr><td>Singh Arjun</td><td>India</td><td>90 days</td><td class="yes">✅</td><td class="ns">— not shared</td><td>67%</td><td><span class="stat risk">At risk</span></td></tr>
+            </table>
+            <div class="mini">⚠️ "— not shared" means the student hasn't shared that section. It is shown distinctly from ❌ incomplete, so the view is never misleading. Universities only ever see what students choose to share.</div>
+          </div>
+        </div>
+      </div>
+      <div class="hint">Priority 3 / fast-follow. The master dashboard is a convenience layer that live-aggregates only the dashboards students chose to share — it updates instantly when a student grants or revokes access. The student always holds the power; the university simply gets a clearer picture.</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  function go(s){
+    document.querySelectorAll('.screen').forEach(e=>e.classList.remove('show'));
+    document.getElementById('s-'+s).classList.add('show');
+    document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active', b.dataset.s===s));
+    document.querySelector('main.stage').scrollTop=0;
+    window.scrollTo(0,0);
+  }
+  function toggleManage(id){document.getElementById(id).classList.toggle('open');}
+  document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.s)));
+  // task checkboxes toggle
+  document.addEventListener('click',e=>{
+    if(e.target.classList.contains('check')) e.target.classList.toggle('on');
+  });
+</script>
+</body>
+</html>
