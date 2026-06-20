@@ -191,12 +191,17 @@
     <button data-s="section">Section detail · City Hall</button>
     <div class="grp">③ Sharing</div>
     <button data-s="share">Share settings</button>
+    <button data-s="revoke">Revoke access</button>
     <button data-s="viewer">Viewer read-only view</button>
     <div class="grp">④ Form filling</div>
     <button data-s="fupload">Scan / upload form</button>
     <button data-s="freview">Auto-fill review</button>
     <button data-s="foutput">PDF output</button>
-    <div class="grp">⑤ University (later)</div>
+    <div class="grp">⑤ Document Decoder</div>
+    <button data-s="decoder">Scan &amp; decode mail</button>
+    <div class="grp">⑥ Payment Tracker</div>
+    <button data-s="payment">Salary &amp; payments</button>
+    <div class="grp">⑦ University (later)</div>
     <button data-s="uni">Master dashboard</button>
   </nav>
 
@@ -305,6 +310,7 @@
           </div>
 
           <div class="reminder red"><div class="ic">⏰</div><div><div class="t">Visa expires in 142 days</div><div class="d">Nov 16, 2026 · start renewal early</div></div></div>
+          <div class="reminder red"><div class="ic">💴</div><div><div class="t">Residence tax payment overdue</div><div class="d">Counts against your compliance score · <span class="link" onclick="go('payment')">open Payment Tracker</span></div></div></div>
           <div class="reminder"><div class="ic">📍</div><div><div class="t">Register your residency</div><div class="d">Within 14 days of getting your address</div></div></div>
 
           <div style="font-size:14px;font-weight:800;margin:16px 2px 6px">Your journey</div>
@@ -322,14 +328,17 @@
             <div class="step" onclick="go('section')"><div class="dot">5</div><div><div class="lbl">Part-time Work Permit</div><div class="meta">Not started · 0/1</div></div></div>
           </div>
 
-          <button class="btn primary" onclick="go('fupload')">📄 Fill a form</button>
-          <button class="btn ghost" onclick="go('share')">🔗 Share my dashboard</button>
+          <div style="display:flex;gap:10px;margin-top:14px">
+            <button class="btn primary" onclick="go('fupload')" style="margin:0">📄 Fill a form</button>
+            <button class="btn ghost" onclick="go('decoder')" style="margin:0">🔍 Decode a letter</button>
+          </div>
+          <button class="btn ghost" onclick="go('payment')">💴 Open Payment Tracker</button>
         </div>
         <div class="bottomnav">
           <div class="on"><span class="ic">🏠</span>Home</div>
-          <div onclick="go('section')"><span class="ic">✅</span>Tasks</div>
+          <div onclick="go('decoder')"><span class="ic">🔍</span>Decode</div>
           <div onclick="go('fupload')"><span class="ic">📄</span>Forms</div>
-          <div onclick="go('share')"><span class="ic">🔗</span>Share</div>
+          <div onclick="go('payment')"><span class="ic">💴</span>Tracker</div>
         </div>
       </div></div>
       <div class="caption">
@@ -407,7 +416,7 @@
                 <div style="display:flex;gap:8px;margin-top:10px">
                   <button class="btn primary sm">Save changes</button>
                   <button class="btn ghost sm" onclick="go('viewer')">Preview as them</button>
-                  <button class="btn ghost sm" style="color:var(--red);border-color:#f3c9c2">Revoke all</button>
+                  <button class="btn ghost sm" style="color:var(--red);border-color:#f3c9c2" onclick="event.stopPropagation();go('revoke')">Revoke all</button>
                 </div>
               </div>
             </div>
@@ -423,7 +432,7 @@
                 <div class="togrow"><div class="n">All sections</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
                 <div style="display:flex;gap:8px;margin-top:10px">
                   <button class="btn primary sm">Save changes</button>
-                  <button class="btn ghost sm" style="color:var(--red);border-color:#f3c9c2">Revoke all</button>
+                  <button class="btn ghost sm" style="color:var(--red);border-color:#f3c9c2" onclick="event.stopPropagation();go('revoke')">Revoke all</button>
                 </div>
               </div>
             </div>
@@ -434,6 +443,44 @@
         <h2>Share settings</h2>
         <p>The differentiator. Like a Google Sheet: invite by named email, pick per-section visibility (or all), revoke per-person anytime. <b>To change an existing share, tap the person under "Shared with"</b> — their section toggles reappear pre-set to what they currently see; flip any and Save. The change is instant and the viewer's screen updates live — no message needed.</p>
         <span class="pill">Named-email only</span><span class="pill">Edit a share anytime</span><span class="pill">Instant + revocable</span>
+      </div>
+    </section>
+
+    <!-- REVOKE ACCESS -->
+    <section class="screen" id="s-revoke">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="appbar"><div style="font-size:13px;color:var(--teal-d);cursor:pointer;font-weight:600" onclick="go('share')">‹ Back</div><div class="b-logo">Revoke access</div></div>
+        <div class="pad">
+          <div id="revConfirm">
+            <div class="h1">Stop sharing?</div>
+            <div class="sub">You're about to remove access for:</div>
+            <div class="card" style="display:flex;align-items:center;gap:11px">
+              <div style="font-size:22px">🏫</div>
+              <div><div style="font-weight:700;font-size:14px">office@tuj.temple.edu</div><div style="font-size:11.5px;color:var(--ink2)">Temple University Japan · 3 sections</div></div>
+            </div>
+            <div class="reminder red"><div class="ic">⚠️</div><div><div class="t">They'll lose access right away</div><div class="d">They won't be able to see your dashboard or your compliance score anymore.</div></div></div>
+            <div class="card" style="background:var(--soft);font-size:12.5px;color:var(--ink2)">Don't worry — this isn't forever. You can invite them again whenever you like. 🙂</div>
+            <button class="btn primary" style="background:var(--red)" onclick="document.getElementById('revConfirm').style.display='none';document.getElementById('revDone').style.display='block'">Yes, revoke access</button>
+            <button class="btn ghost" onclick="go('share')">Keep sharing</button>
+          </div>
+
+          <div id="revDone" style="display:none;text-align:center">
+            <div style="font-size:46px;margin:34px 0 6px">✅</div>
+            <div class="h1">Done!</div>
+            <div class="sub">Temple University Japan can no longer see your dashboard. You're back in full control.</div>
+            <div class="card" style="text-align:left">
+              <div style="font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:8px">Still shared with</div>
+              <div class="chip">👪 <b>mum@email.com</b> · all sections</div>
+            </div>
+            <button class="btn primary" onclick="go('share')">Back to sharing</button>
+            <div class="muted">Changed your mind? <span class="link" onclick="go('share')">Invite them again</span></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Revoke access</h2>
+        <p>What happens when you tap "Revoke all". A clear confirmation — with a friendly reminder that it's reversible — then instant removal: the viewer loses access right away and drops off your "shared with" list. Power always stays with you.</p>
+        <span class="pill">Confirm first</span><span class="pill">Instant</span><span class="pill">Reversible</span>
       </div>
     </section>
 
@@ -571,6 +618,97 @@
       </div>
     </section>
 
+    <!-- DOCUMENT DECODER -->
+    <section class="screen" id="s-decoder">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="appbar"><div style="font-size:13px;color:var(--teal-d);cursor:pointer;font-weight:600" onclick="go('home')">‹ Back</div><div class="b-logo">Decoder</div></div>
+        <div class="pad">
+          <div class="h1">What's this letter?</div>
+          <div class="sub">Got mail you can't read? Snap a photo. We'll tell you what it is and what to do next — in plain English. Most letters are in Japanese, but any language works.</div>
+
+          <div class="scanbox" id="decScan" onclick="document.getElementById('decResult').style.display='block';this.style.display='none'">
+            <div class="big">🔍</div>
+            <div style="font-weight:700;color:var(--ink);margin:8px 0 4px">Scan or upload mail</div>
+            <div style="font-size:12px">A letter, postcard or notice</div>
+            <button class="btn primary" style="max-width:200px;margin:16px auto 0">Take photo</button>
+          </div>
+
+          <div id="decResult" style="display:none">
+            <div class="card" style="border-color:#cdd9ff;background:#f4f7ff">
+              <div style="font-size:11px;color:var(--blue-d);font-weight:700">IDENTIFIED ✓ · high confidence</div>
+              <div style="font-size:16px;font-weight:800;margin:3px 0 2px">National Health Insurance bill</div>
+              <div style="font-size:12px;color:var(--ink2)">国民健康保険 納付書 · from Shinjuku City</div>
+            </div>
+            <div class="card">
+              <div style="font-size:13px;font-weight:700;margin-bottom:5px">What it is</div>
+              <div style="font-size:12.5px;color:var(--ink2);line-height:1.5">A request to pay your national health insurance premium. It's mandatory, and a payment slip is attached.</div>
+              <div style="font-size:13px;font-weight:700;margin:12px 0 6px">What to do</div>
+              <div class="task" style="margin-bottom:8px"><div style="font-size:15px">1️⃣</div><div><div class="td" style="margin:0">Pay at a konbini, bank, or by app before the due date.</div></div></div>
+              <div class="task" style="margin-bottom:0"><div style="font-size:15px">2️⃣</div><div><div class="td" style="margin:0">Keep the receipt — log it in the Payment Tracker.</div></div></div>
+            </div>
+            <div class="reminder"><div class="ic">⏰</div><div><div class="t">Due July 31, 2026</div><div class="d">Added to your reminders</div></div></div>
+            <button class="btn primary" onclick="go('payment')">💴 Track this payment</button>
+            <div class="card" style="background:var(--soft);text-align:center;font-size:12px;color:var(--ink2);margin-top:12px">Not sure we got it right? <span class="link">Ask a human · AskMe</span></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Document Decoder</h2>
+        <p>Scan any official mail (mostly Japanese). The app identifies it and explains, in plain English, what it is and what to do — with the deadline added to reminders. Fillable docs route to form filling; if confidence is low, it points to the AskMe human service.</p>
+        <span class="pill">Identify + explain</span><span class="pill">Routes to forms / payments</span><span class="pill">AskMe fallback</span>
+      </div>
+    </section>
+
+    <!-- PAYMENT TRACKER -->
+    <section class="screen" id="s-payment">
+      <div class="phone"><div class="notch"></div><div class="pscreen">
+        <div class="appbar"><div style="font-size:13px;color:var(--teal-d);cursor:pointer;font-weight:600" onclick="go('home')">‹ Back</div><div class="b-logo">Payment Tracker</div></div>
+        <div class="pad">
+          <div class="h1">Payment Tracker</div>
+          <div class="sub">Japan's taxes and bills can be confusing — let's make them simple. See what really leaves your salary, and never miss a payment.</div>
+
+          <div class="card">
+            <label class="f" style="margin-top:0">Monthly salary (gross)</label>
+            <input class="input" value="¥ 280,000">
+            <div style="font-size:11px;color:var(--ink2);margin-top:6px">Pulled from your profile: Shinjuku ward · employee · age 23. <span class="link">Edit</span></div>
+          </div>
+
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+              <span style="font-size:13px;font-weight:700">Take-home (net)</span><span style="font-size:18px;font-weight:800">¥224,300</span>
+            </div>
+            <div style="border-top:1px solid var(--line);padding-top:8px">
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink2);padding:3px 0"><span>Income tax</span><span>− ¥6,100</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink2);padding:3px 0"><span>Residence tax</span><span>− ¥12,500</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink2);padding:3px 0"><span>Pension</span><span>− ¥25,620</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink2);padding:3px 0"><span>Health insurance</span><span>− ¥13,900</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink2);padding:3px 0"><span>Employment insurance</span><span>− ¥1,680</span></div>
+            </div>
+            <div style="font-size:11px;color:var(--blue-d);margin-top:8px">＋ Your employer also pays ~¥41,000 toward pension &amp; insurance.</div>
+            <div style="font-size:10.5px;color:var(--ink2);margin-top:6px">Estimate based on national rates · reviewed by our team · not tax advice.</div>
+          </div>
+
+          <div style="font-size:14px;font-weight:800;margin:14px 2px 8px">Upcoming &amp; due</div>
+          <div class="task"><div class="check on">✓</div><div><div class="tt">Pension — June</div><div class="td">Paid · ¥16,980</div></div></div>
+          <div class="task" style="border-color:#f3c4c4;background:#FFF5F4"><div style="font-size:17px">⚠️</div><div style="flex:1"><div class="tt">Residence tax — Q1</div><div class="td" style="color:var(--red)">Overdue · ¥31,200 · counts as a compliance risk</div><div style="margin-top:7px;display:flex;gap:8px"><button class="btn primary sm">Mark paid</button><button class="btn ghost sm" onclick="go('decoder')">Scan receipt</button></div></div></div>
+          <div class="task"><div style="font-size:17px">🔔</div><div><div class="tt">Health insurance — July</div><div class="td">Due Jul 31 · ¥13,900 · reminder set 7 days before</div></div></div>
+
+          <div class="card" style="background:var(--soft)">
+            <div style="font-size:12.5px;color:var(--ink2);line-height:1.5">📦 <b>You recently moved.</b> You still owe residence tax to your old ward (Toshima) for this year. Your new ward (Shinjuku) residence tax starts next year — so don't be surprised by the old-ward bill.</div>
+          </div>
+
+          <div class="card">
+            <div class="togrow" style="border:0;padding:2px"><div><div class="n">Keep payments private</div><div style="font-size:11px;color:var(--ink2)">Salary is hidden from all viewers by default</div></div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="caption">
+        <h2>Payment Tracker</h2>
+        <p>Enter your salary; it auto-pulls ward, employment type and age from your profile. See deductions, take-home and the employer split, track each payment's due date, and get reminders. Overdue payments become a compliance risk. Salary is private by default, and the residence-tax move quirk is explained automatically.</p>
+        <span class="pill">Salary breakdown</span><span class="pill">Overdue = compliance risk</span><span class="pill">Private by default</span>
+      </div>
+    </section>
+
     <!-- UNIVERSITY MASTER -->
     <section class="screen" id="s-uni">
       <div style="width:100%;display:flex;flex-direction:column;align-items:center">
@@ -612,6 +750,7 @@
   function go(s){
     document.querySelectorAll('.screen').forEach(e=>e.classList.remove('show'));
     document.getElementById('s-'+s).classList.add('show');
+    if(s==='revoke'){var c=document.getElementById('revConfirm'),d=document.getElementById('revDone');if(c&&d){c.style.display='block';d.style.display='none';}}
     document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active', b.dataset.s===s));
     document.querySelector('main.stage').scrollTop=0;
     window.scrollTo(0,0);
