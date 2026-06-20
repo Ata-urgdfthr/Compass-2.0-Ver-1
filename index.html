@@ -713,33 +713,82 @@
     <section class="screen" id="s-uni">
       <div style="width:100%;display:flex;flex-direction:column;align-items:center">
       <div class="desktop">
-        <div class="dtop"><div class="b-logo"><img class="logo-ic" src="nyuuly-icon-white.svg" alt="">nyuu<span>ly</span> Compass · University Admin</div><div style="font-size:13px;color:#9fb3c8">Temple University Japan (TUJ)</div></div>
+        <div class="dtop">
+          <div class="b-logo"><img class="logo-ic" src="nyuuly-icon-white.svg" alt="">nyuu<span>ly</span> Compass · University Admin</div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="font-size:13px;color:#9fb3c8">Temple University Japan (TUJ)</div>
+            <div style="font-size:12px;color:#cdd9ee;background:#0f2a4a;border-radius:20px;padding:5px 11px">👤 Global Office · admin</div>
+          </div>
+        </div>
         <div class="dbody">
           <div class="dside">
-            <div class="on">📊 Overview</div><div>👥 Students</div><div>🔔 Alerts</div><div>📑 Reports</div><div>✉️ Communications</div><div>⚙️ Settings</div>
+            <div class="on">📊 Overview</div><div>👥 Students</div><div>🔔 Alerts</div><div>📑 Reports</div><div>⚙️ Settings</div>
           </div>
           <div class="dmain">
-            <div style="font-size:18px;font-weight:800;margin-bottom:4px">Student compliance overview</div>
-            <div style="font-size:13px;color:var(--ink2);margin-bottom:16px">Live view of 124 students who have shared their dashboard with you.</div>
+            <!-- header + export -->
+            <div style="display:flex;align-items:flex-start;justify-content:space-between">
+              <div>
+                <div style="font-size:18px;font-weight:800">Students who need attention</div>
+                <div style="font-size:12.5px;color:var(--ink2);margin-top:2px">Sorted by risk · grouped by intake · showing your sharing students.</div>
+              </div>
+              <div style="display:flex;gap:8px;flex-shrink:0">
+                <button class="btn ghost sm" style="margin:0">⬇ CSV</button>
+                <button class="btn ghost sm" style="margin:0">⬇ PDF report</button>
+              </div>
+            </div>
+
+            <!-- alerts -->
+            <div style="display:flex;gap:10px;margin:14px 0 16px">
+              <div style="flex:1;background:#FFE2E2;border:1px solid #f3c4c4;border-radius:10px;padding:9px 12px;font-size:12.5px;color:#7a1a14"><b>⚠ 11 students Critical</b> · jump to the list below</div>
+              <div style="flex:1;background:#FFE7D9;border:1px solid #ffd3b3;border-radius:10px;padding:9px 12px;font-size:12.5px;color:#8a4b12"><b>⏰ 4 visas expiring within 30 days</b> · e.g. Nguyen A.M. (25 days)</div>
+            </div>
+
+            <!-- KPIs -->
             <div class="kpis">
-              <div class="kpi green"><div class="n">82</div><div class="l">On track</div></div>
+              <div class="kpi green"><div class="n">78</div><div class="l">On track</div></div>
               <div class="kpi amber"><div class="n">31</div><div class="l">At risk</div></div>
               <div class="kpi red"><div class="n">11</div><div class="l">Critical</div></div>
-              <div class="kpi"><div class="n">124</div><div class="l">Sharing with you</div></div>
+              <div class="kpi"><div class="n">120<span style="font-size:14px;color:var(--ink2)"> / 138</span></div><div class="l">Students sharing</div></div>
             </div>
+
+            <!-- bottlenecks -->
+            <div style="background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 16px;margin-bottom:16px">
+              <div style="font-size:13px;font-weight:700;margin-bottom:8px">Common bottlenecks <span style="font-weight:400;color:var(--ink2);font-size:11.5px">· most-missed mandatory items across sharing students</span></div>
+              <div style="display:flex;align-items:center;gap:10px;margin:5px 0"><div style="width:210px;font-size:12px">Register residency (City Hall)</div><div style="flex:1;background:#eef1f6;border-radius:6px;height:13px;overflow:hidden"><div style="width:74%;background:var(--blue);height:100%"></div></div><div style="width:28px;font-size:12px;color:var(--ink2);text-align:right">34</div></div>
+              <div style="display:flex;align-items:center;gap:10px;margin:5px 0"><div style="width:210px;font-size:12px">Receive My Number card</div><div style="flex:1;background:#eef1f6;border-radius:6px;height:13px;overflow:hidden"><div style="width:48%;background:var(--blue);height:100%"></div></div><div style="width:28px;font-size:12px;color:var(--ink2);text-align:right">22</div></div>
+              <div style="display:flex;align-items:center;gap:10px;margin:5px 0"><div style="width:210px;font-size:12px">Confirm health insurance</div><div style="flex:1;background:#eef1f6;border-radius:6px;height:13px;overflow:hidden"><div style="width:33%;background:var(--blue);height:100%"></div></div><div style="width:28px;font-size:12px;color:var(--ink2);text-align:right">15</div></div>
+            </div>
+
+            <!-- filters -->
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+              <span style="font-size:11px;color:var(--ink2);font-weight:600">Risk:</span>
+              <span style="font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;background:var(--navy);color:#fff;cursor:pointer">All</span>
+              <span style="font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;background:#eef1f6;color:var(--ink);cursor:pointer">Critical</span>
+              <span style="font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;background:#eef1f6;color:var(--ink);cursor:pointer">At risk</span>
+              <span style="font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;background:#eef1f6;color:var(--ink);cursor:pointer">On track</span>
+              <span style="width:1px;height:20px;background:var(--line);margin:0 4px"></span>
+              <select class="input" style="width:auto;padding:6px 10px;font-size:12px">
+                <option>Any outstanding item</option><option>Missing City Hall registration</option><option>Missing My Number</option><option>Missing health insurance</option>
+              </select>
+            </div>
+
+            <!-- table -->
             <table>
-              <tr><th>Student</th><th>Nationality</th><th>Visa expiry</th><th>City Hall</th><th>My Number</th><th>Score</th><th>Status</th></tr>
-              <tr><td>Nguyen Anh Minh</td><td>Vietnam</td><td>25 days</td><td class="yes">✅</td><td class="yes">✅</td><td>92%</td><td><span class="stat ok">On track</span></td></tr>
-              <tr><td>Kim Minseo</td><td>South Korea</td><td>40 days</td><td class="ns">— not shared</td><td class="yes">✅</td><td>61%</td><td><span class="stat risk">At risk</span></td></tr>
-              <tr><td>Chen Wei</td><td>China</td><td>53 days</td><td class="no">❌</td><td class="no">❌</td><td>34%</td><td><span class="stat crit">Critical</span></td></tr>
-              <tr><td>Rahman Aisha</td><td>Bangladesh</td><td>70 days</td><td class="yes">✅</td><td class="yes">✅</td><td>88%</td><td><span class="stat ok">On track</span></td></tr>
-              <tr><td>Singh Arjun</td><td>India</td><td>90 days</td><td class="yes">✅</td><td class="ns">— not shared</td><td>67%</td><td><span class="stat risk">At risk</span></td></tr>
+              <tr><th>Student</th><th>Score</th><th>Key sections (CH · MN · RES)</th><th>Visa</th><th>Status</th><th></th></tr>
+              <tr><td colspan="6" style="background:#eef3f7;font-size:11px;font-weight:700;color:var(--ink2);letter-spacing:.4px">2026 SPRING INTAKE</td></tr>
+              <tr><td>Chen Wei</td><td><b>34%</b></td><td><span style="color:var(--red)">CH ✗</span> &nbsp; <span style="color:var(--red)">MN ✗</span> &nbsp; <span style="color:var(--red)">RES ✗</span></td><td>53 d</td><td><span class="stat crit">Critical</span></td><td><button class="btn ghost sm" style="margin:0">🔔 Nudge</button></td></tr>
+              <tr><td>Kim Minseo</td><td>61%</td><td><span class="ns">CH —</span> &nbsp; <span style="color:var(--green)">MN ✓</span> &nbsp; <span style="color:var(--green)">RES ✓</span></td><td>40 d</td><td><span class="stat risk">At risk</span></td><td><button class="btn ghost sm" style="margin:0">🔔 Nudge</button></td></tr>
+              <tr><td>Nguyen Anh Minh</td><td>92%</td><td><span style="color:var(--green)">CH ✓</span> &nbsp; <span style="color:var(--green)">MN ✓</span> &nbsp; <span style="color:var(--green)">RES ✓</span></td><td style="color:var(--amber);font-weight:700">25 d ⏰</td><td><span class="stat ok">On track</span></td><td><button class="btn ghost sm" style="margin:0">🔔 Nudge</button></td></tr>
+              <tr><td>Tanaka Yuki</td><td class="ns">—</td><td class="ns">not sharing yet</td><td class="ns">—</td><td><span class="stat" style="background:#eef1f6;color:#6b7480">Not shared</span></td><td><button class="btn ghost sm" style="margin:0">✉ Invite</button></td></tr>
+              <tr><td colspan="6" style="background:#eef3f7;font-size:11px;font-weight:700;color:var(--ink2);letter-spacing:.4px">2025 AUTUMN INTAKE</td></tr>
+              <tr><td>Singh Arjun</td><td>67%</td><td><span style="color:var(--green)">CH ✓</span> &nbsp; <span class="ns">MN —</span> &nbsp; <span style="color:var(--green)">RES ✓</span></td><td>90 d</td><td><span class="stat risk">At risk</span></td><td><button class="btn ghost sm" style="margin:0">🔔 Nudge</button></td></tr>
+              <tr><td>Rahman Aisha</td><td>88%</td><td><span style="color:var(--green)">CH ✓</span> &nbsp; <span style="color:var(--green)">MN ✓</span> &nbsp; <span style="color:var(--green)">RES ✓</span></td><td>70 d</td><td><span class="stat ok">On track</span></td><td><button class="btn ghost sm" style="margin:0">🔔 Nudge</button></td></tr>
             </table>
-            <div class="mini">⚠️ "— not shared" means the student hasn't shared that section. It is shown distinctly from ❌ incomplete, so the view is never misleading. Universities only ever see what students choose to share.</div>
+            <div class="mini">CH City Hall · MN My Number · RES Residency.  ✓ done · ✗ not done · — not shared.  Risk = compliance score + overdue items + visa proximity. You only ever see the sections a student chose to share — salary &amp; payments are never visible.</div>
           </div>
         </div>
       </div>
-      <div class="hint">Priority 3 / fast-follow. The master dashboard is a convenience layer that live-aggregates only the dashboards students chose to share — it updates instantly when a student grants or revokes access. The student always holds the power; the university simply gets a clearer picture.</div>
+      <div class="hint">Priority 3 / fast-follow. The master dashboard live-aggregates only the dashboards students chose to share — it updates instantly when a student grants or revokes access. Single admin login for the pilot; staff can nudge students and export CSV / PDF, but never edit student data. The student always holds the power.</div>
       </div>
     </section>
 
