@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,239 +9,208 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --blue:#2A3CCA; --blue2:#366CFF; --blue-l:#5B73FF; --navy:#08163d; --navy2:#0d1f54;
-  --orange:#FFA555; --green:#0FB36B; --red:#E5484D; --amber:#E08A2B;
-  --ink:#141925; --ink2:#6b7280; --line:#e9ecf4; --surface:#ffffff; --surface2:#f6f8fd;
-  --bg1:#eef1f9; --bg2:#e7ebf6;
-  --shadow:0 10px 30px rgba(10,22,60,.10); --shadow-sm:0 4px 14px rgba(10,22,60,.07);
-  --r:18px;
+  --blue:#2A3CCA; --blue2:#4a5cf0; --navy:#0c1a44;
+  --orange:#FFA555; --green:#12b67a; --red:#e5556a; --amber:#dd9038; --purple:#7c5cff;
+  --ink:#1d2433; --ink2:#828a9c; --line:#edf0f6; --surface:#ffffff; --surface2:#f6f8fc;
+  --shadow:0 12px 34px rgba(20,30,70,.10); --shadow-sm:0 4px 16px rgba(20,30,70,.06);
 }
-[data-theme="dark"]{
-  --blue:#6B7BFF; --blue2:#7c8bff; --blue-l:#8b97ff; --navy:#05102b; --navy2:#0a1738;
-  --ink:#eef1fb; --ink2:#9aa5bf; --line:#26304b; --surface:#141b2e; --surface2:#0f1626;
-  --bg1:#0a1124; --bg2:#070d1c;
-  --shadow:0 14px 40px rgba(0,0,0,.45); --shadow-sm:0 6px 18px rgba(0,0,0,.4);
-}
-*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;font-family:'Manrope',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);
-  background:radial-gradient(1200px 700px at 20% -10%, #1a2a6b 0%, transparent 60%), linear-gradient(160deg,#0b1430,#0a1024 70%);
-  min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:26px 14px 60px}
+  background:linear-gradient(165deg,#e9eefb,#dde6f7 60%,#e7ecf8);min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;padding:24px 14px 60px}
 .serif{font-family:'Playfair Display',Georgia,serif}
 
-/* page chrome */
-.pagehead{width:100%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;color:#fff;margin-bottom:18px;flex-wrap:wrap;gap:12px}
-.brandrow{display:flex;align-items:center;gap:11px;font-weight:800;font-size:18px}
-.brandrow .sub{font-weight:500;font-size:12px;color:#9fb0d8;border-left:1px solid #2c3a63;padding-left:11px}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap}
-.tbtn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
-  color:#eaf0ff;font-size:13px;font-weight:600;padding:9px 14px;border-radius:11px;cursor:pointer;backdrop-filter:blur(6px)}
-.tbtn:hover{background:rgba(255,255,255,.16)}
-.tbtn.play{background:linear-gradient(120deg,var(--orange),#ff8f3f);border-color:transparent;color:#3a1d00}
+.pagehead{width:100%;max-width:1080px;display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:12px}
+.brandrow{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;color:var(--navy)}
+.brandrow .sub{font-weight:500;font-size:12px;color:#7d88a8;border-left:1px solid #c5cde2;padding-left:11px}
+.toolbar{display:flex;gap:8px}
+.tbtn{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #d8e0f0;color:var(--navy);font-size:13px;
+  font-weight:700;padding:9px 14px;border-radius:11px;cursor:pointer;box-shadow:var(--shadow-sm)}
+.tbtn:hover{background:#f3f6fd}
+.tbtn.play{background:linear-gradient(120deg,var(--blue),var(--blue2));color:#fff;border-color:transparent}
 
-/* device */
 .stage{display:flex;align-items:flex-start;justify-content:center;gap:30px;flex-wrap:wrap;width:100%}
-.device{position:relative;width:392px;height:812px;background:#000;border-radius:52px;padding:11px;
-  box-shadow:0 40px 90px rgba(0,0,0,.55), inset 0 0 0 2px #2a2f3e;flex-shrink:0}
-.screen-wrap{position:relative;width:100%;height:100%;background:var(--bg1);border-radius:42px;overflow:hidden;
-  background:linear-gradient(180deg,var(--bg1),var(--bg2))}
-.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:118px;height:30px;background:#000;border-radius:18px;z-index:60}
-.statusbar{position:absolute;top:0;left:0;right:0;height:50px;display:flex;align-items:center;justify-content:space-between;
-  padding:16px 26px 0;font-size:13px;font-weight:700;color:var(--ink);z-index:40;pointer-events:none}
-.statusbar .r{display:flex;gap:6px;align-items:center}
+.device{position:relative;width:390px;height:810px;background:#0c1020;border-radius:52px;padding:11px;
+  box-shadow:0 40px 90px rgba(20,30,70,.30), inset 0 0 0 2px #2a2f3e;flex-shrink:0}
+.screen-wrap{position:relative;width:100%;height:100%;background:var(--surface2);border-radius:42px;overflow:hidden}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:112px;height:28px;background:#0c1020;border-radius:18px;z-index:60}
+.statusbar{position:absolute;top:0;left:0;right:0;height:48px;display:flex;align-items:center;justify-content:space-between;
+  padding:15px 26px 0;font-size:13px;font-weight:700;z-index:40;pointer-events:none}
 
-/* viewport + views */
-.viewport{position:absolute;top:50px;left:0;right:0;bottom:0}
-.view{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;opacity:0;transform:translateX(16px) scale(.99);
-  transition:opacity .34s cubic-bezier(.4,0,.2,1), transform .34s cubic-bezier(.4,0,.2,1);pointer-events:none;
-  -webkit-overflow-scrolling:touch}
+.viewport{position:absolute;top:48px;left:0;right:0;bottom:0}
+.view{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;opacity:0;transform:translateX(14px);
+  transition:opacity .3s cubic-bezier(.4,0,.2,1),transform .3s cubic-bezier(.4,0,.2,1);pointer-events:none}
 .view::-webkit-scrollbar{width:0}
 .view.active{opacity:1;transform:none;pointer-events:auto;z-index:5}
-.view.has-tabs{padding-bottom:86px}
-.pad{padding:14px 18px 22px}
+.view.tabbed{padding-bottom:90px}
+.pad{padding:12px 20px 24px}
 
-/* app bar */
-.appbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg1) 86%, transparent);backdrop-filter:blur(12px);
-  display:flex;align-items:center;justify-content:space-between;padding:8px 16px 8px;min-height:48px}
+.appbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--surface2) 88%,transparent);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:space-between;padding:8px 16px;min-height:46px}
 .appbar .ttl{font-weight:800;font-size:16px}
 .iconbtn{width:38px;height:38px;border-radius:12px;border:0;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
-.iconbtn:hover{background:var(--surface2)}
-.back{display:flex;align-items:center;gap:4px;font-weight:700;font-size:14px;color:var(--blue);cursor:pointer;background:none;border:0}
+.iconbtn:hover{background:#fff}
+.back{display:flex;align-items:center;gap:3px;font-weight:700;font-size:15px;color:var(--blue);cursor:pointer;background:none;border:0}
 
-/* typography */
-h1.big{font-size:25px;font-weight:800;margin:6px 0 3px;letter-spacing:-.4px}
-.lede{font-size:13.5px;color:var(--ink2);line-height:1.5;margin:0 0 16px}
-.eyebrow{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue)}
-
-/* cards & buttons */
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:var(--shadow-sm)}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:14px;padding:14px;font-size:15px;
-  font-weight:700;cursor:pointer;font-family:inherit;transition:transform .12s, filter .2s}
-.btn:active{transform:scale(.98)}
-.btn.primary{background:linear-gradient(120deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 8px 20px rgba(42,60,202,.32)}
-.btn.primary:hover{filter:brightness(1.06)}
-.btn.ghost{background:var(--surface);border:1.5px solid var(--line);color:var(--ink)}
-.btn.dark{background:var(--navy);color:#fff}
-.btn.danger{background:var(--red);color:#fff}
-.btn.sm{padding:10px 14px;font-size:13px;width:auto;border-radius:11px}
-.row{display:flex;gap:10px}
-.field{display:block;font-size:12px;font-weight:700;color:var(--ink2);margin:12px 0 6px}
-.inp{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;font-size:14.5px;background:var(--surface);color:var(--ink);font-family:inherit}
-.inp:focus{outline:none;border-color:var(--blue)}
-.muted{font-size:12px;color:var(--ink2)}
-.link{color:var(--blue);font-weight:700;cursor:pointer}
-.pillrow{display:flex;gap:7px;flex-wrap:wrap}
-.tag{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:30px;text-transform:uppercase;letter-spacing:.4px}
-.tag.must{background:color-mix(in srgb,var(--red) 14%,transparent);color:var(--red)}
-.tag.rec{background:color-mix(in srgb,var(--blue) 13%,transparent);color:var(--blue)}
-.tag.opt{background:var(--surface2);color:var(--ink2)}
-
-/* status bar / nav icons */
+h1.big{font-size:26px;font-weight:800;margin:8px 0 4px;letter-spacing:-.5px}
+.lede{font-size:14px;color:var(--ink2);line-height:1.5;margin:0 0 20px}
 svg.ic{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-/* tab bar */
-.tabbar{position:absolute;left:10px;right:10px;bottom:10px;height:66px;background:color-mix(in srgb,var(--surface) 92%,transparent);
-  backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:22px;display:flex;z-index:30;box-shadow:var(--shadow);
-  display:none}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:var(--shadow-sm)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:15px;padding:15px;font-size:15.5px;
+  font-weight:700;cursor:pointer;font-family:inherit;transition:transform .12s,filter .2s}
+.btn:active{transform:scale(.98)}
+.btn.primary{background:linear-gradient(120deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 10px 22px rgba(42,60,202,.28)}
+.btn.primary:hover{filter:brightness(1.05)}
+.btn.soft{background:transparent;border:0;color:var(--blue);font-weight:700;box-shadow:none;font-size:14.5px}
+.btn.ghost{background:var(--surface);border:1.5px solid var(--line);color:var(--ink)}
+.btn.danger{background:var(--red);color:#fff}
+.field{display:block;font-size:12px;font-weight:700;color:var(--ink2);margin:14px 0 6px}
+.inp{width:100%;border:1.5px solid var(--line);border-radius:13px;padding:14px;font-size:15px;background:var(--surface);color:var(--ink);font-family:inherit}
+.inp:focus{outline:none;border-color:var(--blue)}
+.muted{font-size:12.5px;color:var(--ink2)}
+.link{color:var(--blue);font-weight:700;cursor:pointer}
+.center{text-align:center}
+
+/* big choice tiles */
+.tile{display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--line);border-radius:18px;margin-bottom:12px;
+  cursor:pointer;background:var(--surface);transition:.15s;box-shadow:var(--shadow-sm)}
+.tile:hover{border-color:var(--blue)}
+.tile.sel{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 6%,var(--surface))}
+.tile .ti{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--surface2);flex-shrink:0}
+.tile .tn{font-size:15px;font-weight:800}
+.tile .tm{font-size:12px;color:var(--ink2);margin-top:1px}
+.tile .rad{margin-left:auto;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex-shrink:0}
+.tile.sel .rad{border-color:var(--blue);background:var(--blue);box-shadow:inset 0 0 0 4px #fff}
+.tile.reco{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 5%,var(--surface))}
+.recoBadge{font-size:10px;font-weight:800;color:#fff;background:var(--blue);padding:3px 9px;border-radius:20px;margin-left:auto}
+
+.badge-ver{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--green) 14%,transparent);color:var(--green);
+  font-size:12px;font-weight:800;padding:7px 12px;border-radius:30px;margin-bottom:14px}
+.nudge{display:flex;gap:11px;align-items:center;background:color-mix(in srgb,var(--blue) 7%,var(--surface));border:1px solid color-mix(in srgb,var(--blue) 22%,transparent);
+  border-radius:16px;padding:13px;margin-bottom:16px}
+
+/* score ring */
+.scoreCard{background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:22px;padding:18px;color:#fff;display:flex;
+  align-items:center;gap:18px;margin-bottom:16px;box-shadow:0 14px 30px rgba(12,26,68,.30);position:relative;overflow:hidden}
+.scoreCard::after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.06);right:-46px;top:-46px}
+.ring{position:relative;width:74px;height:74px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg)}
+.ring .lab{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .lab b{font-size:19px;font-weight:800}
+.ring .lab span{font-size:8px;letter-spacing:1px;color:#c3cdf2}
+.scoreCard h3{margin:0 0 2px;font-size:14px;font-weight:700;color:#dbe2ff}
+.scoreCard p{margin:0;font-size:13px;font-weight:700}
+
+/* next-step hero */
+.hero{border-radius:22px;padding:20px;margin-bottom:14px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero.settle{background:linear-gradient(130deg,#12b67a,#0c9460)}
+.hero.renew{background:linear-gradient(130deg,#e5556a,#c23a52)}
+.hero.grad{background:linear-gradient(130deg,#7c5cff,#5a37e0)}
+.hero .nowtag{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;opacity:.92}
+.hero h2{font-size:21px;margin:7px 0 5px;font-weight:800;letter-spacing:-.3px}
+.hero .due{font-size:12.5px;opacity:.92;margin-bottom:14px}
+.hero .heroBtn{background:#fff;color:#13203c;border:0;border-radius:13px;padding:13px;font-weight:800;font-size:14.5px;cursor:pointer;width:100%;font-family:inherit}
+
+/* journey peek row */
+.jrow{display:flex;align-items:center;gap:13px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:15px;
+  cursor:pointer;box-shadow:var(--shadow-sm);margin-bottom:6px}
+.jrow .ji{width:42px;height:42px;border-radius:13px;background:color-mix(in srgb,var(--blue) 9%,var(--surface));display:flex;align-items:center;justify-content:center;font-size:19px}
+.jbar{height:7px;border-radius:7px;background:var(--line);overflow:hidden;margin-top:7px}
+.jbar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--blue2))}
+
+/* full journey map */
+.gmap{position:relative;padding:4px 0}
+.gnode{display:flex;align-items:center;gap:13px;padding:9px 4px;border-radius:14px;position:relative;cursor:pointer}
+.gnode:hover{background:var(--surface)}
+.gnode .bub{width:48px;height:48px;border-radius:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:21px;
+  border:2px solid var(--line);background:var(--surface);box-shadow:var(--shadow-sm);position:relative;z-index:2}
+.gnode.done .bub{background:linear-gradient(135deg,var(--green),#0c9460);border-color:transparent}
+.gnode.now .bub{background:linear-gradient(135deg,var(--blue),var(--blue2));border-color:transparent;box-shadow:0 0 0 5px color-mix(in srgb,var(--blue) 20%,transparent)}
+.gnode.lock .bub{opacity:.55}
+.gnode .gl{font-size:14.5px;font-weight:700}
+.gnode .gm{font-size:11.5px;color:var(--ink2)}
+.gnode .av{position:absolute;left:32px;top:-12px;font-size:20px;z-index:3;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.gconn{position:absolute;left:29px;width:3px;background:repeating-linear-gradient(var(--line),var(--line) 4px,transparent 4px,transparent 8px);z-index:1}
+
+/* tasks */
+.task{display:flex;gap:13px;padding:15px;border:1px solid var(--line);border-radius:16px;margin-bottom:11px;background:var(--surface);align-items:center;box-shadow:var(--shadow-sm)}
+.chk{width:25px;height:25px;border-radius:9px;border:2px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s}
+.chk.on{background:var(--green);border-color:var(--green)}
+.chk svg{width:14px;height:14px;stroke:#fff;stroke-width:3;fill:none}
+.task .tt{font-size:14.5px;font-weight:700}
+.task .td{font-size:12px;color:var(--ink2);margin-top:2px}
+
+/* toggles */
+.tog{display:flex;align-items:center;justify-content:space-between;padding:13px 2px;border-bottom:1px solid var(--line)}
+.tog:last-child{border-bottom:0}.tog .n{font-size:14px;font-weight:700}
+.sw{width:46px;height:27px;border-radius:30px;background:#cdd4e2;position:relative;cursor:pointer;flex-shrink:0;transition:.2s}
+.sw::after{content:"";position:absolute;width:21px;height:21px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.22s;box-shadow:0 2px 4px rgba(0,0,0,.2)}
+.sw.on{background:var(--blue)}.sw.on::after{left:22px}
+
+/* alert (single) */
+.alert{display:flex;gap:11px;align-items:center;border-radius:16px;padding:14px;margin-bottom:14px;border:1px solid}
+.alert.warn{background:color-mix(in srgb,var(--amber) 12%,var(--surface));border-color:color-mix(in srgb,var(--amber) 28%,transparent)}
+.alert .at{font-size:13.5px;font-weight:700}.alert .ad{font-size:12px;color:var(--ink2)}
+
+/* scan / form */
+.scan{border:2px dashed var(--blue);border-radius:20px;background:var(--surface);padding:30px 16px;text-align:center;color:var(--ink2)}
+.scan .big{font-size:36px}
+.ffield{border:1.5px solid var(--line);border-radius:14px;padding:13px 15px;margin-bottom:10px;background:var(--surface)}
+.ffield.auto{border-color:color-mix(in srgb,var(--blue) 38%,transparent);background:color-mix(in srgb,var(--blue) 5%,var(--surface))}
+.ffield .en{font-size:11px;color:var(--blue);font-weight:700}
+.ffield .val{font-size:16px;font-weight:700;margin-top:3px}
+.docpdf{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;font-size:13px;line-height:1.9;color:var(--ink2)}
+
+/* loading + confetti */
+.loading{position:absolute;inset:0;background:color-mix(in srgb,var(--surface2) 82%,transparent);backdrop-filter:blur(3px);
+  display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:55}
+.loading.show{display:flex}
+.spin{width:46px;height:46px;border-radius:50%;border:4px solid var(--line);border-top-color:var(--blue);animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.loading .lt{font-size:13.5px;font-weight:700}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:80}
+.cf{position:absolute;width:8px;height:13px;top:-20px;border-radius:2px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(880px) rotate(540deg);opacity:.9}}
+
+/* tab bar (single, fixed) */
+.tabbar{position:absolute;left:10px;right:10px;bottom:10px;height:66px;background:color-mix(in srgb,var(--surface) 94%,transparent);
+  backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:22px;display:none;z-index:30;box-shadow:var(--shadow)}
 .tabbar.show{display:flex}
-.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10.5px;font-weight:700;
-  color:var(--ink2);cursor:pointer}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10.5px;font-weight:700;color:var(--ink2);cursor:pointer}
 .tab svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .tab.on{color:var(--blue)}
 
-/* compliance ring */
-.scoreCard{background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:22px;padding:18px;color:#fff;display:flex;
-  align-items:center;gap:18px;margin-bottom:16px;box-shadow:0 14px 34px rgba(10,22,60,.34);position:relative;overflow:hidden}
-.scoreCard::after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.07);right:-50px;top:-50px}
-.ring{position:relative;width:78px;height:78px;flex-shrink:0}
-.ring svg{transform:rotate(-90deg)}
-.ring .lab{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.ring .lab b{font-size:20px;font-weight:800}
-.ring .lab span{font-size:8px;letter-spacing:1px;color:#cdd8ff}
-.scoreCard h3{margin:0 0 3px;font-size:15px}
-.scoreCard p{margin:0;font-size:12px;color:#d4ddff;line-height:1.45}
-
-/* right-now hero */
-.hero{border-radius:20px;padding:16px;margin-bottom:14px;position:relative;overflow:hidden;color:#fff;box-shadow:var(--shadow)}
-.hero.settle{background:linear-gradient(125deg,#0FB36B,#0a8f57)}
-.hero.renew{background:linear-gradient(125deg,#E5484D,#b5333a)}
-.hero.grad{background:linear-gradient(125deg,#7c4dff,#5b2fd1)}
-.hero .nowtag{font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:.92}
-.hero h2{font-size:19px;margin:5px 0 4px;font-weight:800}
-.hero p{margin:0 0 12px;font-size:12.5px;opacity:.95;line-height:1.45}
-.hero .heroBtn{background:rgba(255,255,255,.95);color:#11203a;border:0;border-radius:12px;padding:11px 14px;font-weight:800;font-size:13.5px;cursor:pointer;width:100%;font-family:inherit}
-.hero .meta{font-size:11px;opacity:.9;margin-top:9px;display:flex;align-items:center;gap:6px}
-
-/* reminders */
-.alert{display:flex;gap:11px;align-items:flex-start;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1px solid}
-.alert.warn{background:color-mix(in srgb,var(--amber) 13%,var(--surface));border-color:color-mix(in srgb,var(--amber) 30%,transparent)}
-.alert.crit{background:color-mix(in srgb,var(--red) 12%,var(--surface));border-color:color-mix(in srgb,var(--red) 28%,transparent)}
-.alert .ai{font-size:17px}
-.alert .at{font-size:13px;font-weight:700}
-.alert .ad{font-size:11.5px;color:var(--ink2)}
-
-/* section heading */
-.shead{display:flex;align-items:center;justify-content:space-between;margin:18px 2px 10px}
-.shead .h{font-size:15px;font-weight:800}
-.shead .a{font-size:12px;font-weight:700;color:var(--blue);cursor:pointer}
-
-/* game map */
-.gmap{position:relative;padding:6px 0 4px}
-.gnode{display:flex;align-items:center;gap:13px;padding:8px 6px;border-radius:14px;cursor:pointer;position:relative}
-.gnode:hover{background:var(--surface)}
-.gnode .bub{width:46px;height:46px;border-radius:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;
-  border:2px solid var(--line);background:var(--surface);box-shadow:var(--shadow-sm);position:relative;z-index:2}
-.gnode.done .bub{background:linear-gradient(135deg,var(--green),#0a8f57);border-color:transparent;color:#fff}
-.gnode.now .bub{background:linear-gradient(135deg,var(--blue),var(--blue2));border-color:transparent;color:#fff;
-  box-shadow:0 0 0 5px color-mix(in srgb,var(--blue) 22%,transparent)}
-.gnode.lock .bub{opacity:.6}
-.gnode .gl{font-size:14px;font-weight:700}
-.gnode .gm{font-size:11px;color:var(--ink2)}
-.gnode .av{position:absolute;left:30px;top:-12px;font-size:20px;z-index:3;animation:bob 1.6s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-.gconn{position:absolute;left:28px;width:3px;background:repeating-linear-gradient(var(--line),var(--line) 4px,transparent 4px,transparent 8px);
-  z-index:1}
-
-/* task rows */
-.task{display:flex;gap:12px;padding:13px;border:1px solid var(--line);border-radius:15px;margin-bottom:10px;background:var(--surface);align-items:flex-start;box-shadow:var(--shadow-sm)}
-.chk{width:24px;height:24px;border-radius:8px;border:2px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s}
-.chk.on{background:var(--green);border-color:var(--green);color:#fff}
-.chk svg{width:14px;height:14px;stroke:#fff;stroke-width:3;fill:none}
-.task .tt{font-size:13.5px;font-weight:700}
-.task .td{font-size:11.5px;color:var(--ink2);margin-top:3px;line-height:1.45}
-
-/* toggles */
-.tog{display:flex;align-items:center;justify-content:space-between;padding:12px 2px;border-bottom:1px solid var(--line)}
-.tog:last-child{border-bottom:0}
-.tog .n{font-size:13.5px;font-weight:700}
-.sw{width:46px;height:27px;border-radius:30px;background:#cbd2e0;position:relative;cursor:pointer;flex-shrink:0;transition:.2s}
-[data-theme="dark"] .sw{background:#3a4664}
-.sw::after{content:"";position:absolute;width:21px;height:21px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.22s;box-shadow:0 2px 4px rgba(0,0,0,.25)}
-.sw.on{background:var(--blue)}
-.sw.on::after{left:22px}
-
 /* sheet */
-.sheet-mask{position:absolute;inset:0;background:rgba(6,12,30,.5);opacity:0;pointer-events:none;transition:.3s;z-index:70}
+.sheet-mask{position:absolute;inset:0;background:rgba(10,18,44,.46);opacity:0;pointer-events:none;transition:.3s;z-index:70}
 .sheet-mask.show{opacity:1;pointer-events:auto}
-.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-radius:26px 26px 0 0;padding:10px 18px 24px;
-  transform:translateY(102%);transition:transform .36s cubic-bezier(.4,0,.2,1);z-index:71;max-height:80%;overflow-y:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-radius:28px 28px 0 0;padding:8px 20px 26px;
+  transform:translateY(102%);transition:transform .34s cubic-bezier(.4,0,.2,1);z-index:71;max-height:84%;overflow-y:auto}
 .sheet.show{transform:none}
-.grab{width:42px;height:5px;border-radius:5px;background:var(--line);margin:6px auto 12px}
-.moment{display:flex;align-items:center;gap:13px;padding:13px;border:1.5px solid var(--line);border-radius:15px;margin-bottom:9px;cursor:pointer;background:var(--surface)}
-.moment:hover{border-color:var(--blue)}
-.moment.sel{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 7%,var(--surface))}
-.moment .mi{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;background:var(--surface2);flex-shrink:0}
-.moment .mn{font-size:14px;font-weight:700}
-.moment .mm{font-size:11px;color:var(--ink2)}
-
-/* scan / form */
-.scan{border:2px dashed var(--blue);border-radius:18px;background:var(--surface);padding:26px 16px;text-align:center;color:var(--ink2)}
-.scan .big{font-size:34px}
-.ffield{border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:9px;background:var(--surface)}
-.ffield.auto{border-color:color-mix(in srgb,var(--blue) 40%,transparent);background:color-mix(in srgb,var(--blue) 5%,var(--surface))}
-.ffield .jp{font-size:11px;color:var(--ink2)}
-.ffield .en{font-size:10.5px;color:var(--blue);margin:2px 0 5px;font-weight:600}
-.ffield .val{font-size:15px;font-weight:700}
-.docpdf{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;font-size:13px;line-height:1.9;color:var(--ink2)}
-
-/* spinner / loading overlay */
-.loading{position:absolute;inset:0;background:color-mix(in srgb,var(--bg1) 80%,transparent);backdrop-filter:blur(3px);
-  display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:55}
-.loading.show{display:flex}
-.spin{width:46px;height:46px;border-radius:50%;border:4px solid var(--line);border-top-color:var(--blue);animation:sp 0.8s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-.loading .lt{font-size:13px;font-weight:700;color:var(--ink)}
-
-/* chips */
-.chip{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--line);border-radius:30px;padding:7px 12px;font-size:12px;margin:0 6px 7px 0}
-
-/* demo menu */
-.menu-mask{position:fixed;inset:0;background:rgba(4,8,20,.55);opacity:0;pointer-events:none;transition:.3s;z-index:200}
-.menu-mask.show{opacity:1;pointer-events:auto}
-.menu{position:fixed;top:0;right:0;height:100%;width:300px;background:var(--surface);transform:translateX(100%);transition:.34s cubic-bezier(.4,0,.2,1);
-  z-index:201;padding:20px 16px;overflow-y:auto;box-shadow:-10px 0 40px rgba(0,0,0,.3)}
-.menu.show{transform:none}
-.menu h4{margin:14px 6px 6px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink2)}
-.menu button.mi{display:block;width:100%;text-align:left;border:0;background:none;padding:10px 12px;border-radius:11px;font-size:13.5px;
-  color:var(--ink);cursor:pointer;font-family:inherit;font-weight:600}
-.menu button.mi:hover{background:var(--surface2)}
+.grab{width:42px;height:5px;border-radius:5px;background:var(--line);margin:7px auto 14px}
 
 /* viewer banner */
-.vbanner{background:var(--navy);color:#fff;font-size:11.5px;padding:9px 16px;display:flex;align-items:center;gap:7px}
+.vbanner{background:var(--navy);color:#fff;font-size:12px;padding:10px 16px;text-align:center}
+
+/* profile rows */
+.profrow{display:flex;align-items:center;gap:13px;padding:15px;border:1px solid var(--line);border-radius:16px;margin-bottom:10px;background:var(--surface);cursor:pointer}
+.profrow .pi{width:40px;height:40px;border-radius:12px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:18px}
+.avatar{width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800}
 
 /* university desktop */
 .deskwrap{display:none;width:100%;justify-content:center}
 .deskwrap.show{display:flex}
 .desk{width:1000px;max-width:100%;background:var(--surface);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line)}
-.dtop{background:var(--navy);color:#fff;padding:15px 22px;display:flex;align-items:center;justify-content:between;justify-content:space-between}
+.dtop{background:var(--navy);color:#fff;padding:15px 22px;display:flex;align-items:center;justify-content:space-between}
 .dbody{display:flex}
-.dside{width:185px;background:var(--navy2);color:#c6d2ee;padding:16px 10px;font-size:13px}
+.dside{width:185px;background:#0a1738;color:#c6d2ee;padding:16px 10px;font-size:13px}
 .dside div{padding:10px 13px;border-radius:9px;margin-bottom:2px;cursor:pointer}
 .dside div.on{background:var(--blue);color:#fff;font-weight:700}
 .dmain{flex:1;padding:22px;background:var(--surface2);min-width:0}
 .kpis{display:flex;gap:13px;margin-bottom:16px;flex-wrap:wrap}
 .kpi{flex:1;min-width:120px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px}
-.kpi .n{font-size:27px;font-weight:800}
-.kpi .l{font-size:12px;color:var(--ink2)}
+.kpi .n{font-size:27px;font-weight:800}.kpi .l{font-size:12px;color:var(--ink2)}
 .kpi.g .n{color:var(--green)}.kpi.a .n{color:var(--amber)}.kpi.r .n{color:var(--red)}
 table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:13px;overflow:hidden;font-size:13px}
 th{text-align:left;background:var(--surface2);padding:11px 13px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink2)}
@@ -252,31 +221,26 @@ td{padding:12px 13px;border-top:1px solid var(--line)}
 .stat.crit{background:color-mix(in srgb,var(--red) 16%,transparent);color:var(--red)}
 .yes{color:var(--green);font-weight:800}.no{color:var(--red);font-weight:800}.ns{color:var(--ink2)}
 
-/* confetti */
-.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:80}
-.cf{position:absolute;width:8px;height:13px;top:-20px;border-radius:2px;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(900px) rotate(540deg);opacity:.9}}
-
-/* empty state */
-.empty{text-align:center;padding:30px 10px;color:var(--ink2)}
-.empty .ei{font-size:42px}
-.profrow{display:flex;align-items:center;gap:13px;padding:14px;border:1px solid var(--line);border-radius:15px;margin-bottom:10px;background:var(--surface);cursor:pointer}
-.profrow .pi{width:38px;height:38px;border-radius:11px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:18px}
-.avatar{width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800}
+/* demo menu */
+.menu-mask{position:fixed;inset:0;background:rgba(8,16,40,.5);opacity:0;pointer-events:none;transition:.3s;z-index:200}
+.menu-mask.show{opacity:1;pointer-events:auto}
+.menu{position:fixed;top:0;right:0;height:100%;width:300px;background:var(--surface);transform:translateX(100%);transition:.34s cubic-bezier(.4,0,.2,1);z-index:201;padding:20px 16px;overflow-y:auto;box-shadow:-10px 0 40px rgba(0,0,0,.25)}
+.menu.show{transform:none}
+.menu h4{margin:14px 6px 6px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink2)}
+.menu button.mi{display:block;width:100%;text-align:left;border:0;background:none;padding:10px 12px;border-radius:11px;font-size:13.5px;color:var(--ink);cursor:pointer;font-family:inherit;font-weight:600}
+.menu button.mi:hover{background:var(--surface2)}
 </style>
 </head>
 <body>
 
-<!-- page chrome -->
 <div class="pagehead">
   <div class="brandrow">
-    <svg width="26" height="26" viewBox="0 0 100 100"><path d="M20 82 L46 41 a5 5 0 0 1 8 0 L80 82" fill="none" stroke="#fff" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><circle cx="75" cy="29" r="15" fill="#FFA555"/></svg>
-    nyuu<span style="color:#FFA555">ly</span> Compass 2.0 <span class="sub">High-fidelity prototype · investor demo</span>
+    <svg width="25" height="25" viewBox="0 0 100 100"><path d="M20 82 L46 41 a5 5 0 0 1 8 0 L80 82" fill="none" stroke="#2A3CCA" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><circle cx="75" cy="29" r="15" fill="#FFA555"/></svg>
+    nyuu<span style="color:var(--orange)">ly</span> Compass 2.0 <span class="sub">Prototype</span>
   </div>
   <div class="toolbar">
     <button class="tbtn play" onclick="playDemo()">▶ Play demo</button>
     <button class="tbtn" onclick="openMenu()">☰ Screens</button>
-    <button class="tbtn" onclick="toggleTheme()" id="themeBtn">◐ Dark</button>
   </div>
 </div>
 
@@ -284,26 +248,25 @@ td{padding:12px 13px;border-top:1px solid var(--line)}
 <div class="device">
   <div class="screen-wrap">
     <div class="island"></div>
-    <div class="statusbar"><span>9:41</span><span class="r">📶 &nbsp;5G&nbsp; 🔋</span></div>
-
-    <div class="loading" id="loading"><div class="spin"></div><div class="lt" id="loadingTxt">Reading your form…</div></div>
+    <div class="statusbar"><span>9:41</span><span>📶 5G 🔋</span></div>
+    <div class="loading" id="loading"><div class="spin"></div><div class="lt" id="loadingTxt">Reading…</div></div>
     <div class="confetti" id="confetti"></div>
 
     <div class="viewport" id="viewport">
 
-      <!-- ============ SIGN UP ============ -->
+      <!-- SIGN UP -->
       <div class="view" id="v-signup">
-        <div class="pad" style="padding-top:30px">
-          <div style="font-weight:800;font-size:22px;margin-bottom:6px">nyuu<span style="color:var(--orange)">ly</span> <span style="color:var(--ink2);font-weight:700">Compass</span></div>
+        <div class="pad" style="padding-top:34px">
+          <div style="font-weight:800;font-size:22px;margin-bottom:24px">nyuu<span style="color:var(--orange)">ly</span></div>
           <h1 class="big serif">Welcome 👋</h1>
-          <p class="lede">Sign in with a one-time code — no password to remember. Save your progress, fill your forms, and settle into Japan with confidence.</p>
+          <p class="lede">Sign in with a one-time code. No password.</p>
           <div class="card">
-            <label class="field">Email or phone number</label>
+            <label class="field" style="margin-top:0">Email or phone</label>
             <input class="inp" value="jessie.tan@email.com">
             <button class="btn primary" style="margin-top:14px" onclick="document.getElementById('otp').style.display='block';this.style.display='none'">Send me a code</button>
             <div id="otp" style="display:none">
-              <label class="field" style="margin-top:16px">Enter the 6-digit code</label>
-              <div class="row" style="gap:7px">
+              <label class="field">6-digit code</label>
+              <div style="display:flex;gap:7px">
                 <input class="inp" style="text-align:center;font-size:19px;font-weight:800" maxlength="1" value="4">
                 <input class="inp" style="text-align:center;font-size:19px;font-weight:800" maxlength="1" value="9">
                 <input class="inp" style="text-align:center;font-size:19px;font-weight:800" maxlength="1" value="2">
@@ -311,398 +274,351 @@ td{padding:12px 13px;border-top:1px solid var(--line)}
                 <input class="inp" style="text-align:center;font-size:19px;font-weight:800" maxlength="1" value="7">
                 <input class="inp" style="text-align:center;font-size:19px;font-weight:800" maxlength="1" value="1">
               </div>
-              <div class="muted" style="margin-top:9px">Didn't get it? <span class="link">Resend</span> · expires in 4:58</div>
-              <button class="btn primary" style="margin-top:14px" onclick="go('profile')">Verify &amp; continue</button>
+              <button class="btn primary" style="margin-top:14px" onclick="go('setup')">Verify</button>
             </div>
-            <div style="display:flex;align-items:center;gap:10px;color:var(--ink2);font-size:12px;margin:16px 0"><div style="flex:1;height:1px;background:var(--line)"></div>or<div style="flex:1;height:1px;background:var(--line)"></div></div>
-            <button class="btn ghost" onclick="go('profile')">Continue with Google</button>
           </div>
-          <p class="muted" style="text-align:center">By continuing you agree to our Terms &amp; APPI-compliant Privacy Policy.</p>
+          <p class="muted center">APPI-compliant. Your data stays yours.</p>
         </div>
       </div>
 
-      <!-- ============ PROFILE SETUP ============ -->
-      <div class="view" id="v-profile">
-        <div class="appbar"><button class="back" onclick="go('signup')">‹ Back</button><span class="muted" style="font-weight:700">Step 1 of 2</span><span style="width:30px"></span></div>
+      <!-- SETUP CHOICE -->
+      <div class="view" id="v-setup">
+        <div class="appbar"><button class="back" onclick="go('signup')">‹</button><span class="muted" style="font-weight:700">Set up · 1 of 3</span><span style="width:24px"></span></div>
         <div class="pad">
-          <h1 class="big serif">Tell us about you</h1>
-          <p class="lede">This personalises your journey and auto-fills your forms. Your <b>visa type</b> sets your path.</p>
+          <h1 class="big serif">Set up your profile</h1>
+          <p class="lede">Scan your card and we'll do the typing.</p>
+          <div class="tile reco" onclick="chooseSetup(true)">
+            <div class="ti">🪪</div>
+            <div><div class="tn">Scan My Number Card</div><div class="tm">Auto-fills &amp; verifies your account</div></div>
+            <span class="recoBadge">Recommended</span>
+          </div>
+          <div class="tile" onclick="chooseSetup(false)">
+            <div class="ti">✏️</div>
+            <div><div class="tn">Enter manually</div><div class="tm">Type it in yourself</div></div>
+          </div>
+          <p class="muted center" style="margin-top:18px">Scanning gives you a <b style="color:var(--green)">Verified</b> badge — universities trust it more.</p>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="view" id="v-profile">
+        <div class="appbar"><button class="back" onclick="go('setup')">‹</button><span class="muted" style="font-weight:700">Set up · 2 of 3</span><span style="width:24px"></span></div>
+        <div class="pad">
+          <div id="verBadge" class="badge-ver" style="display:none">✓ Verified via My Number Card</div>
+          <div id="verNudge" class="nudge" style="display:none">
+            <div style="font-size:20px">🪪</div>
+            <div style="flex:1"><div style="font-weight:700;font-size:13px">Verify your account</div><div class="muted">Scan your My Number Card anytime.</div></div>
+            <span class="link" onclick="chooseSetup(true)">Scan</span>
+          </div>
+          <h1 class="big serif">Your details</h1>
+          <p class="lede">Your visa type sets your journey.</p>
           <div class="card">
-            <label class="field">Visa type</label>
+            <label class="field" style="margin-top:0">Visa type</label>
             <select class="inp"><option>Student</option><option>Engineer / Specialist</option><option>Dependent / Spouse</option><option>Working Holiday</option><option>Highly Skilled Professional</option></select>
-            <label class="field">Full name (romaji)</label><input class="inp" value="Jessie Tan">
-            <label class="field">Katakana <span style="color:var(--blue)">· auto, editable</span></label><input class="inp" value="ジェシー・タン">
-            <label class="field">Nationality</label><input class="inp" value="Malaysia">
-            <label class="field">Date of birth</label><input class="inp" value="2003 / 05 / 14">
-            <label class="field">Japan arrival date</label><input class="inp" value="2026 / 04 / 02">
+            <label class="field">Full name</label><input class="inp" value="Jessie Tan">
             <label class="field">Visa expiry</label><input class="inp" value="2026 / 11 / 16">
-            <label class="field">Address in Japan</label>
-            <div class="scan" style="padding:16px" onclick="document.getElementById('ocr').style.display='block';this.style.display='none'">
-              <div style="font-size:24px">🪪</div><div style="font-weight:800;color:var(--ink);font-size:13px;margin-top:4px">Upload your Residence Card</div>
-              <div style="font-size:11.5px">We'll read the address for you</div>
-            </div>
-            <div id="ocr" style="display:none">
-              <div style="font-size:11.5px;color:var(--blue);font-weight:700;margin-bottom:5px">✓ Read from your card — confirm</div>
-              <input class="inp" value="東京都新宿区西早稲田 2-1-1">
-            </div>
-            <button class="btn primary" style="margin-top:16px" onclick="go('home')">Save &amp; see my dashboard</button>
+            <label class="field">Address</label><input class="inp" value="東京都新宿区西早稲田 2-1-1">
+            <button class="btn primary" style="margin-top:16px" onclick="go('journey')">Continue</button>
           </div>
         </div>
       </div>
 
-      <!-- ============ HOME (adaptive) ============ -->
-      <div class="view has-tabs" id="v-home">
+      <!-- JOURNEY SETUP -->
+      <div class="view" id="v-journey">
+        <div class="appbar"><button class="back" onclick="go('profile')">‹</button><span class="muted" style="font-weight:700">Set up · 3 of 3</span><span style="width:24px"></span></div>
+        <div class="pad">
+          <h1 class="big serif">Where are you right now?</h1>
+          <p class="lede">We'll start you in the right place.</p>
+          <div class="tile sel" data-moment="settle" onclick="selJourney(this)"><div class="ti">🛬</div><div><div class="tn">Just arrived / settling in</div><div class="tm">First-weeks essentials</div></div><div class="rad"></div></div>
+          <div class="tile" data-moment="renew" onclick="selJourney(this)"><div class="ti">🛂</div><div><div class="tn">My visa is expiring soon</div><div class="tm">Time to renew</div></div><div class="rad"></div></div>
+          <div class="tile" data-moment="grad" onclick="selJourney(this)"><div class="ti">🎓</div><div><div class="tn">Graduating with a job</div><div class="tm">Switching to a work visa</div></div><div class="rad"></div></div>
+          <div class="tile" data-moment="settle" onclick="selJourney(this)"><div class="ti">✈️</div><div><div class="tn">Leaving Japan</div><div class="tm">Wrapping things up</div></div><div class="rad"></div></div>
+
+          <div id="doneBlock">
+            <p class="muted" style="margin:20px 2px 10px;font-weight:700">Already done some of these?</p>
+            <div class="tog"><div class="n">🪪 Got my residence card</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+            <div class="tog"><div class="n">🏛️ Registered at City Hall</div><div class="sw" onclick="this.classList.toggle('on')"></div></div>
+            <div class="tog"><div class="n">🏦 Opened a bank account</div><div class="sw" onclick="this.classList.toggle('on')"></div></div>
+            <div class="tog"><div class="n">📱 Got a phone number</div><div class="sw" onclick="this.classList.toggle('on')"></div></div>
+          </div>
+          <button class="btn primary" style="margin-top:18px" onclick="finishJourney()">See my dashboard</button>
+        </div>
+      </div>
+
+      <!-- HOME (adaptive) -->
+      <div class="view tabbed" id="v-home">
         <div class="appbar">
-          <div><div class="muted" style="font-weight:700">Tuesday, 23 June</div><div class="ttl" style="font-size:18px">Hi Jessie 👋</div></div>
+          <div><div class="muted" style="font-weight:700">Tue, 23 June</div><div class="ttl" style="font-size:18px">Hi Jessie 👋</div></div>
           <button class="iconbtn" onclick="go('profile-app')"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/></svg></button>
         </div>
         <div class="pad" style="padding-top:4px">
-          <!-- score -->
           <div class="scoreCard">
             <div class="ring">
-              <svg width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="33" stroke="rgba(255,255,255,.18)" stroke-width="9" fill="none"/>
-              <circle id="ringArc" cx="39" cy="39" r="33" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="207" stroke-dashoffset="60"/></svg>
+              <svg width="74" height="74" viewBox="0 0 74 74"><circle cx="37" cy="37" r="31" stroke="rgba(255,255,255,.16)" stroke-width="9" fill="none"/><circle id="ringArc" cx="37" cy="37" r="31" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round"/></svg>
               <div class="lab"><b id="ringPct">71%</b><span>COMPLIANT</span></div>
             </div>
-            <div><h3>Compliance score</h3><p id="scoreNote">3 mandatory items left. Finish them to reach 100% and stay fully compliant.</p></div>
+            <div><h3>Compliance</h3><p id="scoreNote">3 steps to 100%</p></div>
           </div>
 
-          <!-- moment: SETTLING -->
+          <!-- moment panels -->
           <div class="moment-panel" data-m="settle">
             <div class="hero settle">
-              <div class="nowtag">⚡ Right now · Settling in</div>
-              <h2>Register your residency</h2>
-              <p>You moved in 12 days ago — you must register at City Hall within 14 days. 2 days left.</p>
-              <button class="heroBtn" onclick="go('section')">Open City Hall steps →</button>
-              <div class="meta">⏰ Due in 2 days · 🏛️ Shinjuku City Office</div>
+              <div class="nowtag">Your next step</div>
+              <h2>Register at City Hall</h2>
+              <div class="due">⏰ Due in 2 days</div>
+              <button class="heroBtn" onclick="go('section')">Show me how</button>
             </div>
-            <div class="alert crit"><div class="ai">⏰</div><div><div class="at">Visa expires in 142 days</div><div class="ad">Nov 16, 2026 — we'll guide your renewal nearer the time.</div></div></div>
-            <div class="shead"><div class="h">Your journey</div><div class="a" onclick="go('section')">View all</div></div>
-            <div class="gmap">
-              <div class="gconn" style="top:36px;height:54px"></div>
-              <div class="gconn" style="top:90px;height:54px"></div>
-              <div class="gconn" style="top:144px;height:54px"></div>
-              <div class="gconn" style="top:198px;height:54px"></div>
-              <div class="gconn" style="top:252px;height:54px"></div>
-              <div class="gnode done"><div class="bub">✈️</div><div><div class="gl">Arrival at airport</div><div class="gm">Completed · 3/3</div></div></div>
-              <div class="gnode done"><div class="bub">🏠</div><div><div class="gl">Finding your home</div><div class="gm">Completed · 6/6</div></div></div>
-              <div class="gnode now" onclick="go('section')"><div class="av">🧍</div><div class="bub">🏛️</div><div><div class="gl">City Hall paperwork</div><div class="gm">In progress · 4/6 · tap to open</div></div></div>
-              <div class="gnode lock"><div class="bub">🏦</div><div><div class="gl">Open a bank account</div><div class="gm">Locked · 0/3</div></div></div>
-              <div class="gnode lock"><div class="bub">📱</div><div><div class="gl">Get a phone number</div><div class="gm">Locked · 0/2</div></div></div>
-              <div class="gnode lock"><div class="bub">💼</div><div><div class="gl">Part-time work permit</div><div class="gm">Locked · 0/1</div></div></div>
-            </div>
+            <div class="jrow" onclick="go('section')"><div class="ji">🗺️</div><div style="flex:1"><div style="font-weight:700;font-size:14px">Your journey · 2 of 6</div><div class="jbar"><i style="width:33%"></i></div></div><span style="color:var(--blue);font-weight:800">›</span></div>
           </div>
 
-          <!-- moment: RENEWAL -->
           <div class="moment-panel" data-m="renew" style="display:none">
             <div class="hero renew">
-              <div class="nowtag">⚡ Right now · Visa renewal</div>
-              <h2>Start your student visa extension</h2>
-              <p>Your status expires in 78 days. As a <b>student</b>, you'll need an enrollment certificate, transcript and attendance record.</p>
-              <button class="heroBtn" onclick="go('section-renew')">See what to gather →</button>
-              <div class="meta">⏰ Apply from 3 months before · 🛂 Immigration</div>
+              <div class="nowtag">Your next step</div>
+              <h2>Gather renewal documents</h2>
+              <div class="due">🛂 Visa expires in 78 days</div>
+              <button class="heroBtn" onclick="go('section-renew')">Show me how</button>
             </div>
-            <div class="alert warn"><div class="ai">🎓</div><div><div class="at">Different from a worker's renewal</div><div class="ad">We show the student-specific document list, not the generic one.</div></div></div>
-            <div class="shead"><div class="h">Renewal steps</div><div class="a" onclick="go('section-renew')">View all</div></div>
-            <div class="gmap">
-              <div class="gconn" style="top:36px;height:54px"></div>
-              <div class="gconn" style="top:90px;height:54px"></div>
-              <div class="gconn" style="top:144px;height:54px"></div>
-              <div class="gnode done"><div class="bub">📅</div><div><div class="gl">Reminder received</div><div class="gm">90 days before expiry</div></div></div>
-              <div class="gnode now" onclick="go('section-renew')"><div class="av">🧍</div><div class="bub">📄</div><div><div class="gl">Gather documents</div><div class="gm">In progress · student set · tap to open</div></div></div>
-              <div class="gnode lock"><div class="bub">🛂</div><div><div class="gl">Submit at Immigration</div><div class="gm">Locked · you file yourself</div></div></div>
-              <div class="gnode lock"><div class="bub">🪪</div><div><div class="gl">Collect new residence card</div><div class="gm">Locked</div></div></div>
-            </div>
+            <div class="jrow" onclick="go('section-renew')"><div class="ji">🗺️</div><div style="flex:1"><div style="font-weight:700;font-size:14px">Renewal · step 2 of 4</div><div class="jbar"><i style="width:40%"></i></div></div><span style="color:var(--blue);font-weight:800">›</span></div>
           </div>
 
-          <!-- moment: GRADUATION -->
           <div class="moment-panel" data-m="grad" style="display:none">
             <div class="hero grad">
-              <div class="nowtag">⚡ Right now · Graduating → work</div>
-              <h2>Change your status to a work visa</h2>
-              <p>You've got a job offer 🎉 — switch from <b>Student</b> to a work status before graduation. Your employer provides key documents.</p>
-              <button class="heroBtn" onclick="go('section-grad')">Start change of status →</button>
-              <div class="meta">⏰ Apply ~3 months before starting · 🛂 Immigration</div>
+              <div class="nowtag">Your next step</div>
+              <h2>Collect employer documents</h2>
+              <div class="due">🎓 Apply before you start work</div>
+              <button class="heroBtn" onclick="go('section-grad')">Show me how</button>
             </div>
-            <div class="alert warn"><div class="ai">🏢</div><div><div class="at">Your employer has a role here</div><div class="ad">We list exactly what to request from HR, and by when.</div></div></div>
-            <div class="shead"><div class="h">Change-of-status steps</div><div class="a" onclick="go('section-grad')">View all</div></div>
-            <div class="gmap">
-              <div class="gconn" style="top:36px;height:54px"></div>
-              <div class="gconn" style="top:90px;height:54px"></div>
-              <div class="gconn" style="top:144px;height:54px"></div>
-              <div class="gnode done"><div class="bub">📝</div><div><div class="gl">Job offer accepted</div><div class="gm">Completed</div></div></div>
-              <div class="gnode now" onclick="go('section-grad')"><div class="av">🧍</div><div class="bub">🏢</div><div><div class="gl">Collect employer documents</div><div class="gm">In progress · tap to open</div></div></div>
-              <div class="gnode lock"><div class="bub">🛂</div><div><div class="gl">Submit change of status</div><div class="gm">Locked · you file yourself</div></div></div>
-              <div class="gnode lock"><div class="bub">💼</div><div><div class="gl">Start work</div><div class="gm">Locked</div></div></div>
-            </div>
+            <div class="jrow" onclick="go('section-grad')"><div class="ji">🗺️</div><div style="flex:1"><div style="font-weight:700;font-size:14px">Change of status · step 2 of 4</div><div class="jbar"><i style="width:40%"></i></div></div><span style="color:var(--blue);font-weight:800">›</span></div>
           </div>
 
-          <button class="btn ghost" style="margin-top:6px" onclick="openSheet()">🔄 My situation changed</button>
-          <div class="row" style="margin-top:10px">
-            <button class="btn primary sm" style="flex:1" onclick="go('fupload')">📄 Fill a form</button>
-            <button class="btn ghost sm" style="flex:1" onclick="go('decoder')">🔍 Decode mail</button>
-          </div>
+          <button class="btn soft" style="margin-top:6px" onclick="openSheet()">Something changed?</button>
         </div>
-        <div class="tabbar show" data-tabs></div>
       </div>
 
-      <!-- ============ SECTION DETAIL (settling) ============ -->
+      <!-- SECTION (settling) -->
       <div class="view" id="v-section">
-        <div class="appbar"><button class="back" onclick="go('home')">‹ Home</button><span class="ttl">City Hall</span><span class="muted" style="font-weight:700" id="chCount">4/6</span></div>
+        <div class="appbar"><button class="back" onclick="go('home')">‹</button><span class="ttl">City Hall</span><span class="muted" style="font-weight:700" id="chCount">4/6</span></div>
         <div class="pad">
-          <h1 class="big serif">City Hall paperwork</h1>
-          <p class="lede">Do these within 2 weeks of your move. Only <b>Mandatory</b> items count toward your score.</p>
+          <h1 class="big serif">City Hall</h1>
+          <p class="lede">Within 2 weeks of moving in.</p>
           <div id="taskList">
-            <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Register residency (Jūmin Tōroku)</div><div class="td">Staff update the address on your Residence Card the same day.</div><span class="tag must" style="margin-top:6px;display:inline-block">Mandatory</span></div></div>
-            <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Decide katakana name</div><div class="td">Needed for pension &amp; bank. Save it to avoid fixing mistakes later.</div><span class="tag rec" style="margin-top:6px;display:inline-block">Recommended</span></div></div>
-            <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Receive your My Number notice</div><div class="td">Keep the 12-digit number; apply for the card online after.</div><span class="tag must" style="margin-top:6px;display:inline-block">Mandatory</span></div></div>
-            <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Request Certificate of Residence</div><div class="td">Official proof of your registered address (Jūminhyō).</div><span class="tag rec" style="margin-top:6px;display:inline-block">Recommended</span></div></div>
-            <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Confirm Health Insurance &amp; Pension</div><div class="td">If your sponsor uses Shakai Hoken you don't enrol here — confirm it.</div><span class="tag rec" style="margin-top:6px;display:inline-block">Recommended</span></div></div>
-            <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Prepare documents to bring</div><div class="td">Residence Card, passport, school address.</div><span class="tag opt" style="margin-top:6px;display:inline-block">Optional</span></div></div>
+            <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Register residency</div><div class="td">Mandatory</div></div></div>
+            <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Decide katakana name</div><div class="td">Recommended</div></div></div>
+            <div class="task"><div class="chk" onclick="toggleTask(this,true)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Get your My Number</div><div class="td">Mandatory</div></div></div>
+            <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Certificate of Residence</div><div class="td">Recommended</div></div></div>
+            <div class="task"><div class="chk" onclick="toggleTask(this,true)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Confirm insurance &amp; pension</div><div class="td">Recommended</div></div></div>
+            <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Documents to bring</div><div class="td">Optional</div></div></div>
           </div>
-          <button class="btn primary" onclick="go('fupload')">📄 Fill the Moving-in Notification</button>
+          <button class="btn primary" onclick="go('fupload')">📄 Fill the Moving-in form</button>
+          <button class="btn soft" onclick="go('home')">Back to home</button>
         </div>
       </div>
 
-      <!-- ============ SECTION DETAIL (renewal) ============ -->
+      <!-- SECTION (renewal) -->
       <div class="view" id="v-section-renew">
-        <div class="appbar"><button class="back" onclick="go('home')">‹ Home</button><span class="ttl">Visa renewal</span><span style="width:30px"></span></div>
+        <div class="appbar"><button class="back" onclick="go('home')">‹</button><span class="ttl">Visa renewal</span><span style="width:24px"></span></div>
         <div class="pad">
-          <h1 class="big serif">Gather your documents</h1>
-          <p class="lede">Extension of stay — <b>student</b> document set. You file this yourself at Immigration; we make sure you arrive ready.</p>
-          <div class="card" style="background:color-mix(in srgb,var(--blue) 6%,var(--surface));border-color:color-mix(in srgb,var(--blue) 25%,transparent)">
-            <div style="font-weight:800;font-size:13px;margin-bottom:4px">ℹ️ Guidance only — not auto-filled</div>
-            <div class="muted">Immigration forms are sensitive, so Compass guides you step-by-step; you sign and submit yourself.</div>
-          </div>
-          <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Enrollment certificate (在学証明書)</div><div class="td">Request from your university office.</div></div></div>
-          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Transcript / academic record</div><div class="td">Shows you're progressing in your studies.</div></div></div>
-          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Attendance record</div><div class="td">Immigration checks attendance for students.</div></div></div>
-          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Passport &amp; residence card</div><div class="td">Plus one photo (4×3cm).</div></div></div>
-          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Application for Extension of Stay</div><div class="td">We help you understand each box; you sign it.</div></div></div>
-          <button class="btn ghost" onclick="go('home')">‹ Back to dashboard</button>
+          <h1 class="big serif">Gather documents</h1>
+          <p class="lede">Student renewal. You submit it yourself.</p>
+          <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Enrollment certificate</div><div class="td">From your university</div></div></div>
+          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Transcript</div></div></div>
+          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Attendance record</div></div></div>
+          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Passport &amp; residence card</div></div></div>
+          <div class="alert warn"><div style="font-size:18px">ℹ️</div><div><div class="at">Guidance only</div><div class="ad">We don't auto-fill immigration forms.</div></div></div>
+          <button class="btn soft" onclick="go('home')">Back to home</button>
         </div>
       </div>
 
-      <!-- ============ SECTION DETAIL (graduation) ============ -->
+      <!-- SECTION (graduation) -->
       <div class="view" id="v-section-grad">
-        <div class="appbar"><button class="back" onclick="go('home')">‹ Home</button><span class="ttl">Change of status</span><span style="width:30px"></span></div>
+        <div class="appbar"><button class="back" onclick="go('home')">‹</button><span class="ttl">Change of status</span><span style="width:24px"></span></div>
         <div class="pad">
-          <h1 class="big serif">Collect employer documents</h1>
-          <p class="lede">Changing from <b>Student</b> to a work status. Most of these come from your new employer — request them early.</p>
-          <div class="card" style="background:color-mix(in srgb,#7c4dff 7%,var(--surface));border-color:color-mix(in srgb,#7c4dff 25%,transparent)">
-            <div style="font-weight:800;font-size:13px;margin-bottom:4px">📅 Timing matters</div>
-            <div class="muted">Apply about 3 months before you start work, while your student status is still valid.</div>
-          </div>
-          <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Certificate of employment</div><div class="td">From your employer's HR.</div></div></div>
-          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Job description &amp; contract</div><div class="td">Must match the work visa category.</div></div></div>
-          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Company registration &amp; financials</div><div class="td">HR usually has a ready packet for visa changes.</div></div></div>
-          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Your graduation certificate</div><div class="td">Or expected-graduation letter.</div></div></div>
-          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Application for Change of Status</div><div class="td">Guided, not auto-filled — you submit it yourself.</div></div></div>
-          <button class="btn ghost" onclick="go('home')">‹ Back to dashboard</button>
+          <h1 class="big serif">From your employer</h1>
+          <p class="lede">Request these early from HR.</p>
+          <div class="task"><div class="chk on" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Certificate of employment</div></div></div>
+          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Contract &amp; job description</div></div></div>
+          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Company documents</div></div></div>
+          <div class="task"><div class="chk" onclick="toggleTask(this)"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Graduation certificate</div></div></div>
+          <div class="alert warn"><div style="font-size:18px">📅</div><div><div class="at">Apply ~3 months early</div><div class="ad">While your student status is valid.</div></div></div>
+          <button class="btn soft" onclick="go('home')">Back to home</button>
         </div>
       </div>
 
-      <!-- ============ FORM UPLOAD ============ -->
-      <div class="view" id="v-fupload">
-        <div class="appbar"><button class="back" onclick="go('home')">‹ Home</button><span class="ttl">Form filling</span><span style="width:30px"></span></div>
+      <!-- FORM: pick -->
+      <div class="view tabbed" id="v-fupload">
+        <div class="appbar"><button class="back" onclick="go('home')">‹</button><span class="ttl">Fill a form</span><span style="width:24px"></span></div>
         <div class="pad">
-          <h1 class="big serif">Fill a Japanese form</h1>
-          <p class="lede">Pick the form or snap a photo — we fill our clean stored copy from your profile.</p>
-          <div class="scan">
+          <h1 class="big serif">Which form?</h1>
+          <p class="lede">Choose from our library, or snap a photo.</p>
+
+          <div style="font-size:12px;font-weight:800;color:var(--ink2);letter-spacing:.4px;margin:4px 2px 10px">FROM OUR LIBRARY</div>
+          <div class="task" onclick="loadThen('Loading template…','freview')" style="cursor:pointer"><div style="font-size:20px">🏛️</div><div><div class="tt">Moving-in Notification</div><div class="td">転入届 · City Hall</div></div></div>
+          <div class="task" onclick="loadThen('Loading template…','freview')" style="cursor:pointer"><div style="font-size:20px">🏛️</div><div><div class="tt">Certificate of Residence</div><div class="td">住民票 · City Hall</div></div></div>
+          <div class="task" onclick="loadThen('Loading template…','freview')" style="cursor:pointer"><div style="font-size:20px">🏦</div><div><div class="tt">Bank account opening</div><div class="td">Most banks</div></div></div>
+          <div class="task" style="opacity:.5"><div style="font-size:20px">🔜</div><div><div class="tt">Health Insurance</div><div class="td">Coming soon</div></div></div>
+
+          <div class="scan" style="margin-top:6px" onclick="loadThen('Reading your form…','freview')">
             <div class="big">📷</div>
-            <div style="font-weight:800;color:var(--ink);margin:8px 0 3px">Scan your form</div>
-            <div style="font-size:12px">Or pick from the list below</div>
-            <button class="btn primary" style="max-width:200px;margin:16px auto 0" onclick="loadThen('Reading your form…','freview')">Take photo</button>
+            <div style="font-weight:800;color:var(--ink);margin-top:6px">Or scan a form</div>
+            <div style="font-size:12px">Snap a photo and we'll detect it</div>
           </div>
-          <div class="shead"><div class="h">Supported now</div></div>
-          <div class="task" onclick="loadThen('Loading template…','freview')" style="cursor:pointer"><div style="font-size:20px">✅</div><div><div class="tt">Moving-in Notification (転入届)</div><div class="td">City hall · most common first form</div></div></div>
-          <div class="task" onclick="loadThen('Loading template…','freview')" style="cursor:pointer"><div style="font-size:20px">✅</div><div><div class="tt">Certificate of Residence (住民票)</div><div class="td">City hall</div></div></div>
-          <div class="task" style="opacity:.5"><div style="font-size:20px">🔜</div><div><div class="tt">National Health Insurance</div><div class="td">Coming soon</div></div></div>
         </div>
       </div>
 
-      <!-- ============ FORM REVIEW ============ -->
+      <!-- FORM: review -->
       <div class="view" id="v-freview">
-        <div class="appbar"><button class="back" onclick="go('fupload')">‹ Back</button><span class="ttl">Review</span><span style="width:30px"></span></div>
+        <div class="appbar"><button class="back" onclick="go('fupload')">‹</button><span class="ttl">Review</span><span style="width:24px"></span></div>
         <div class="pad">
-          <h1 class="big serif">Moving-in Notification</h1>
-          <p class="lede">Filled from your profile. Tap any field to edit — each is explained in English.</p>
-          <div class="ffield auto"><div class="jp">氏名 (フリガナ)</div><div class="en">Full name in katakana</div><div class="val">ジェシー・タン</div></div>
-          <div class="ffield auto"><div class="jp">生年月日</div><div class="en">Date of birth</div><div class="val">2003年5月14日</div></div>
-          <div class="ffield auto"><div class="jp">国籍</div><div class="en">Nationality</div><div class="val">マレーシア</div></div>
-          <div class="ffield auto"><div class="jp">在留資格</div><div class="en">Residence status</div><div class="val">留学 (Student)</div></div>
-          <div class="ffield"><div class="jp">新住所</div><div class="en">New address — please confirm</div><div class="val" style="color:var(--ink2)">Tap to enter…</div></div>
-          <div class="ffield auto"><div class="jp">在留カード番号</div><div class="en">Residence card no.</div><div class="val">AB12345678CD</div></div>
-          <div class="card" style="background:var(--surface2);font-size:11.5px;color:var(--ink2)">ℹ️ Input assistance only — you review, sign and submit it yourself at the counter.</div>
-          <button class="btn primary" onclick="loadThen('Generating your PDF…','foutput',()=>fireConfetti())">Looks good — generate PDF</button>
+          <h1 class="big serif">Moving-in form</h1>
+          <p class="lede">Filled from your profile. Tap to edit.</p>
+          <div class="ffield auto"><div class="en">Name (katakana)</div><div class="val">ジェシー・タン</div></div>
+          <div class="ffield auto"><div class="en">Date of birth</div><div class="val">2003年5月14日</div></div>
+          <div class="ffield auto"><div class="en">Nationality</div><div class="val">マレーシア</div></div>
+          <div class="ffield"><div class="en">New address — confirm</div><div class="val" style="color:var(--ink2)">Tap to enter…</div></div>
+          <button class="btn primary" onclick="loadThen('Generating your PDF…','foutput',fireConfetti)">Generate PDF</button>
+          <p class="muted center" style="margin-top:10px">You sign &amp; submit it yourself.</p>
         </div>
       </div>
 
-      <!-- ============ FORM OUTPUT ============ -->
+      <!-- FORM: output -->
       <div class="view" id="v-foutput">
-        <div class="appbar"><button class="back" onclick="go('freview')">‹ Back</button><span class="ttl">Done</span><span style="width:30px"></span></div>
-        <div class="pad" style="text-align:center">
-          <div style="font-size:46px;margin:8px 0">🎉</div>
-          <h1 class="big serif">Your form is ready!</h1>
-          <p class="lede">Print it, then submit it — or copy it onto the office's paper.</p>
+        <div class="appbar"><button class="back" onclick="go('freview')">‹</button><span class="ttl">Done</span><span style="width:24px"></span></div>
+        <div class="pad center">
+          <div style="font-size:48px;margin:10px 0">🎉</div>
+          <h1 class="big serif">Ready to print</h1>
+          <p class="lede">Take it to the counter.</p>
           <div class="docpdf" style="text-align:left">
-            <div style="font-weight:800;color:var(--ink);text-align:center;margin-bottom:6px">転入届 — Moving-in Notification</div>
-            <div style="border-top:1px solid var(--line);padding-top:8px">氏名: ジェシー・タン<br>生年月日: 2003年5月14日<br>国籍: マレーシア<br>在留資格: 留学<br>新住所: 東京都新宿区…<br>在留カード: AB12345678CD<br><span style="color:var(--red)">署名 ✍️ (sign)</span> · <span style="color:var(--red)">印 (seal)</span></div>
+            <div style="font-weight:800;color:var(--ink);text-align:center;margin-bottom:6px">転入届</div>
+            <div style="border-top:1px solid var(--line);padding-top:8px">氏名: ジェシー・タン<br>生年月日: 2003年5月14日<br>新住所: 東京都新宿区…<br><span style="color:var(--red)">署名 ✍️ · 印</span></div>
           </div>
           <button class="btn primary" style="margin-top:14px">⬇ Download PDF</button>
-          <button class="btn ghost" style="margin-top:10px">🏪 Print at konbini <span class="muted">(soon)</span></button>
-          <p class="muted" style="margin-top:12px">Saved to your <span class="link" onclick="go('home')">Document history</span></p>
+          <button class="btn soft" onclick="go('home')">Done</button>
         </div>
       </div>
 
-      <!-- ============ DOCUMENT DECODER ============ -->
-      <div class="view has-tabs" id="v-decoder">
-        <div class="appbar"><button class="back" onclick="go('home')">‹ Home</button><span class="ttl">Decoder</span><span style="width:30px"></span></div>
+      <!-- DECODER -->
+      <div class="view tabbed" id="v-decoder">
+        <div class="appbar"><button class="back" onclick="go('home')">‹</button><span class="ttl">Decode mail</span><span style="width:24px"></span></div>
         <div class="pad">
           <h1 class="big serif">What's this letter?</h1>
-          <p class="lede">Got mail you can't read? Snap it. We'll tell you what it is and what to do — in plain English.</p>
-          <div class="scan" id="decScan" onclick="loadThen('Decoding your letter…','',()=>{document.getElementById('decRes').style.display='block';this.style.display='none'})">
+          <p class="lede">Snap it. We'll explain it.</p>
+          <div class="scan" id="decScan" onclick="loadThen('Reading your letter…','',()=>{document.getElementById('decRes').style.display='block';this.style.display='none'})">
             <div class="big">🔍</div>
-            <div style="font-weight:800;color:var(--ink);margin:8px 0 3px">Scan or upload mail</div>
-            <div style="font-size:12px">A letter, postcard or notice</div>
-            <button class="btn primary" style="max-width:200px;margin:16px auto 0">Take photo</button>
+            <div style="font-weight:800;color:var(--ink);margin-top:6px">Scan a letter</div>
           </div>
           <div id="decRes" style="display:none">
-            <div class="card" style="border-color:color-mix(in srgb,var(--blue) 35%,transparent);background:color-mix(in srgb,var(--blue) 5%,var(--surface))">
-              <div style="font-size:11px;color:var(--blue);font-weight:800">IDENTIFIED ✓ · high confidence</div>
-              <div style="font-size:17px;font-weight:800;margin:3px 0 2px">National Health Insurance bill</div>
-              <div class="muted">国民健康保険 納付書 · from Shinjuku City</div>
+            <div class="card" style="border-color:color-mix(in srgb,var(--blue) 30%,transparent)">
+              <div style="font-size:11px;color:var(--blue);font-weight:800">IDENTIFIED ✓</div>
+              <div style="font-size:18px;font-weight:800;margin:3px 0 2px">Health Insurance bill</div>
+              <div class="muted">国民健康保険 · from Shinjuku City</div>
             </div>
-            <div class="card">
-              <div style="font-weight:800;font-size:13px;margin-bottom:5px">What it is</div>
-              <div class="muted" style="line-height:1.5">A request to pay your national health insurance premium. It's mandatory and a payment slip is attached.</div>
-              <div style="font-weight:800;font-size:13px;margin:13px 0 6px">What to do</div>
-              <div class="task" style="box-shadow:none;margin-bottom:8px"><div style="font-size:15px">1️⃣</div><div class="td" style="margin:0">Pay at a konbini, bank, or by app before the due date.</div></div>
-              <div class="task" style="box-shadow:none;margin-bottom:0"><div style="font-size:15px">2️⃣</div><div class="td" style="margin:0">Keep the receipt for your records.</div></div>
-            </div>
-            <div class="alert warn"><div class="ai">⏰</div><div><div class="at">Due July 31, 2026</div><div class="ad">Added to your reminders.</div></div></div>
-            <div class="card" style="background:var(--surface2);text-align:center;font-size:12px;color:var(--ink2)">Not sure we got it right? <span class="link">Ask a human · AskMe</span></div>
+            <div class="card"><div style="font-weight:800;margin-bottom:5px">Pay this before</div><div style="font-size:17px;font-weight:800;color:var(--blue)">July 31, 2026</div><div class="muted" style="margin-top:6px">Pay at any konbini, bank, or app.</div></div>
+            <button class="btn soft" onclick="go('home')">Got it</button>
           </div>
         </div>
-        <div class="tabbar show" data-tabs></div>
       </div>
 
-      <!-- ============ SHARE ============ -->
+      <!-- SHARE -->
       <div class="view" id="v-share">
-        <div class="appbar"><button class="back" onclick="go('profile-app')">‹ Back</button><span class="ttl">Sharing</span><span style="width:30px"></span></div>
+        <div class="appbar"><button class="back" onclick="go('profile-app')">‹</button><span class="ttl">Sharing</span><span style="width:24px"></span></div>
         <div class="pad">
-          <h1 class="big serif">Share your dashboard</h1>
-          <p class="lede">Invite by email — view-only, per section, revocable. Your data stays yours.</p>
+          <h1 class="big serif">Share with</h1>
+          <p class="lede">View-only. Revoke anytime.</p>
           <div class="card">
-            <label class="field">Invite by email</label>
-            <div class="row"><input class="inp" value="office@tuj.temple.edu" style="flex:1"><button class="btn primary sm">Invite</button></div>
-            <div class="muted" style="margin-top:8px">🔒 Named-email invites only — no public links.</div>
-            <label class="field" style="margin-top:14px">What can they see?</label>
-            <div class="tog"><div class="n">City Hall Paperwork</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
-            <div class="tog"><div class="n">Work Permit</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
-            <div class="tog"><div class="n">Visa renewal status</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+            <label class="field" style="margin-top:0">Invite by email</label>
+            <div style="display:flex;gap:8px"><input class="inp" value="office@tuj.temple.edu" style="flex:1"><button class="btn primary" style="width:auto;padding:14px 18px">Invite</button></div>
+            <label class="field">They can see</label>
+            <div class="tog"><div class="n">City Hall</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+            <div class="tog"><div class="n">Work permit</div><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
             <div class="tog"><div class="n">Housing &amp; bank</div><div class="sw" onclick="this.classList.toggle('on')"></div></div>
           </div>
           <div class="card">
-            <label class="field" style="margin-top:0">Shared with</label>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0">
-              <div><div style="font-weight:700;font-size:13.5px">🏫 office@tuj.temple.edu</div><div class="muted">Temple University Japan · 3 sections + transitions</div></div>
-              <button class="btn ghost sm" style="color:var(--red);border-color:color-mix(in srgb,var(--red) 35%,transparent)" onclick="go('revoke')">Revoke</button>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div><div style="font-weight:700;font-size:14px">🏫 Temple University</div><div class="muted">3 sections</div></div>
+              <button class="btn ghost" style="width:auto;padding:11px 16px;color:var(--red);border-color:color-mix(in srgb,var(--red) 35%,transparent)" onclick="go('revoke')">Revoke</button>
             </div>
-            <button class="btn ghost sm" style="width:100%;margin-top:8px" onclick="go('viewer')">👁 Preview as them</button>
           </div>
+          <button class="btn soft" onclick="go('viewer')">Preview what they see</button>
         </div>
       </div>
 
-      <!-- ============ REVOKE ============ -->
+      <!-- REVOKE -->
       <div class="view" id="v-revoke">
-        <div class="appbar"><button class="back" onclick="go('share')">‹ Back</button><span class="ttl">Revoke</span><span style="width:30px"></span></div>
+        <div class="appbar"><button class="back" onclick="go('share')">‹</button><span class="ttl">Revoke</span><span style="width:24px"></span></div>
         <div class="pad">
           <div id="revC">
             <h1 class="big serif">Stop sharing?</h1>
-            <p class="lede">You're about to remove access for:</p>
-            <div class="card" style="display:flex;align-items:center;gap:12px"><div style="font-size:24px">🏫</div><div><div style="font-weight:700">office@tuj.temple.edu</div><div class="muted">Temple University Japan · 3 sections</div></div></div>
-            <div class="alert crit"><div class="ai">⚠️</div><div><div class="at">They lose access right away</div><div class="ad">They won't see your dashboard or compliance score anymore.</div></div></div>
-            <div class="card" style="background:var(--surface2);font-size:12.5px;color:var(--ink2)">Don't worry — this isn't forever. You can invite them again whenever you like. 🙂</div>
-            <button class="btn danger" onclick="document.getElementById('revC').style.display='none';document.getElementById('revD').style.display='block';fireConfetti()">Yes, revoke access</button>
-            <button class="btn ghost" style="margin-top:10px" onclick="go('share')">Keep sharing</button>
+            <p class="lede">Temple University will lose access right away.</p>
+            <div class="card center" style="background:var(--surface2)">You can invite them again anytime. 🙂</div>
+            <button class="btn danger" onclick="document.getElementById('revC').style.display='none';document.getElementById('revD').style.display='block';fireConfetti()">Yes, revoke</button>
+            <button class="btn soft" onclick="go('share')">Keep sharing</button>
           </div>
-          <div id="revD" style="display:none;text-align:center">
-            <div style="font-size:46px;margin:30px 0 6px">✅</div>
-            <h1 class="big serif">Done!</h1>
-            <p class="lede">Temple University Japan can no longer see your dashboard. You're back in full control.</p>
-            <button class="btn primary" onclick="go('share')">Back to sharing</button>
+          <div id="revD" style="display:none" class="center">
+            <div style="font-size:48px;margin:34px 0 6px">✅</div>
+            <h1 class="big serif">Done</h1>
+            <p class="lede">You're back in full control.</p>
+            <button class="btn primary" onclick="go('share')">Back</button>
           </div>
         </div>
       </div>
 
-      <!-- ============ VIEWER ============ -->
+      <!-- VIEWER -->
       <div class="view" id="v-viewer">
-        <div class="vbanner">👁️ Viewing Jessie's dashboard (read-only) · 3 of 6 sections shared</div>
-        <div class="appbar"><button class="back" onclick="go('share')">‹ Exit preview</button><span class="ttl">Viewer</span><span style="width:30px"></span></div>
+        <div class="vbanner">👁️ Viewing Jessie's dashboard · read-only</div>
+        <div class="appbar"><button class="back" onclick="go('share')">‹ Exit</button><span class="ttl">Viewer</span><span style="width:24px"></span></div>
         <div class="pad">
           <h1 class="big serif">Jessie Tan</h1>
-          <p class="lede">Student · visa expires Nov 16, 2026</p>
-          <div class="scoreCard"><div class="ring"><svg width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="39" r="33" stroke="rgba(255,255,255,.18)" stroke-width="9" fill="none"/><circle cx="39" cy="39" r="33" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="207" stroke-dashoffset="60"/></svg><div class="lab"><b>71%</b><span>COMPLIANT</span></div></div><div><h3>Compliance score</h3><p>Based on the sections Jessie shared with you.</p></div></div>
-          <div class="alert warn"><div class="ai">⏭️</div><div><div class="at">Coming up: graduating → status change</div><div class="ad">Shared transition — Jessie may need help with the change of status.</div></div></div>
-          <div class="shead"><div class="h">Shared sections</div></div>
-          <div class="task"><div class="chk on"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">City Hall Paperwork</div><div class="td">4 / 6 complete</div></div></div>
-          <div class="task"><div class="chk"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Work Permit</div><div class="td">0 / 1 complete</div></div></div>
-          <div class="card" style="text-align:center;background:var(--surface2);font-size:12.5px;color:var(--ink2)">🔒 3 sections are private and not shared with you.</div>
+          <p class="lede">Student · expires Nov 16, 2026</p>
+          <div class="scoreCard"><div class="ring"><svg width="74" height="74" viewBox="0 0 74 74"><circle cx="37" cy="37" r="31" stroke="rgba(255,255,255,.16)" stroke-width="9" fill="none"/><circle cx="37" cy="37" r="31" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="195" stroke-dashoffset="57"/></svg><div class="lab"><b>71%</b><span>COMPLIANT</span></div></div><div><h3>Compliance</h3><p>Shared sections only</p></div></div>
+          <div class="alert warn"><div style="font-size:18px">⏭️</div><div><div class="at">Graduating soon</div><div class="ad">May need a status change.</div></div></div>
+          <div class="task"><div class="chk on"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">City Hall · 4/6</div></div></div>
+          <div class="task"><div class="chk"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div><div class="tt">Work permit · 0/1</div></div></div>
         </div>
       </div>
 
-      <!-- ============ PROFILE (in-app) ============ -->
-      <div class="view has-tabs" id="v-profile-app">
-        <div class="appbar"><span class="ttl">Profile</span><button class="iconbtn" onclick="toggleTheme()"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4 12H1M23 12h-3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></button></div>
+      <!-- PROFILE (in-app) -->
+      <div class="view tabbed" id="v-profile-app">
+        <div class="appbar"><span class="ttl">Profile</span><span style="width:24px"></span></div>
         <div class="pad">
-          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px">
             <div class="avatar">JT</div>
-            <div><div style="font-weight:800;font-size:18px">Jessie Tan</div><div class="muted">Student · Shinjuku, Tokyo</div></div>
+            <div><div style="font-weight:800;font-size:18px">Jessie Tan</div><div class="badge-ver" id="profVer" style="margin:5px 0 0">✓ Verified</div></div>
           </div>
-          <div class="profrow" onclick="go('profile')"><div class="pi">👤</div><div><div style="font-weight:700;font-size:13.5px">Personal &amp; visa details</div><div class="muted">Name, visa type, expiry, address</div></div></div>
-          <div class="profrow" onclick="go('share')"><div class="pi">🔗</div><div><div style="font-weight:700;font-size:13.5px">Sharing &amp; access</div><div class="muted">Who can see your dashboard</div></div></div>
-          <div class="profrow" onclick="openSheet()"><div class="pi">🔄</div><div><div style="font-weight:700;font-size:13.5px">My situation</div><div class="muted">Tell us what changed</div></div></div>
-          <div class="profrow"><div class="pi">🔔</div><div style="flex:1"><div style="font-weight:700;font-size:13.5px">Reminders</div><div class="muted">Smart lead times per event</div></div><div class="sw on" onclick="event.stopPropagation();this.classList.toggle('on')"></div></div>
-          <div class="profrow"><div class="pi">🌐</div><div><div style="font-weight:700;font-size:13.5px">Language</div><div class="muted">English</div></div></div>
-          <button class="btn ghost" style="color:var(--red);margin-top:8px" onclick="go('signup')">Log out</button>
+          <div class="profrow" onclick="go('profile')"><div class="pi">👤</div><div><div style="font-weight:700;font-size:14px">My details</div></div></div>
+          <div class="profrow" onclick="go('share')"><div class="pi">🔗</div><div><div style="font-weight:700;font-size:14px">Sharing</div></div></div>
+          <div class="profrow" onclick="openSheet()"><div class="pi">🔄</div><div><div style="font-weight:700;font-size:14px">My situation</div></div></div>
+          <div class="profrow"><div class="pi">🔔</div><div style="flex:1"><div style="font-weight:700;font-size:14px">Reminders</div></div><div class="sw on" onclick="event.stopPropagation();this.classList.toggle('on')"></div></div>
+          <button class="btn soft" style="color:var(--red);margin-top:10px" onclick="go('signup')">Log out</button>
         </div>
-        <div class="tabbar show" data-tabs></div>
       </div>
 
-    </div><!-- /viewport -->
+    </div><!-- viewport -->
+
+    <!-- tab bar (single, fixed) -->
+    <div class="tabbar" id="tabbar"></div>
 
     <!-- situation sheet -->
     <div class="sheet-mask" id="sheetMask" onclick="closeSheet()"></div>
     <div class="sheet" id="sheet">
       <div class="grab"></div>
-      <h1 class="big serif" style="font-size:21px;padding:0 2px">What's changed?</h1>
-      <p class="lede" style="padding:0 2px">Compass reshapes around your moment. Pick what's happening now.</p>
-      <div class="moment sel" onclick="pickMoment('settle',this)"><div class="mi">🛬</div><div><div class="mn">Just arrived / settling in</div><div class="mm">First-weeks essentials</div></div></div>
-      <div class="moment" onclick="pickMoment('renew',this)"><div class="mi">🛂</div><div><div class="mn">My visa is expiring</div><div class="mm">Renewal — student documents</div></div></div>
-      <div class="moment" onclick="pickMoment('grad',this)"><div class="mi">🎓</div><div><div class="mn">Graduating with a job</div><div class="mm">Change of status → work</div></div></div>
-      <div class="moment" onclick="pickMoment('settle',this)"><div class="mi">📦</div><div><div class="mn">Moving home</div><div class="mm">Change of address</div></div></div>
-      <div class="moment" onclick="pickMoment('settle',this)"><div class="mi">✈️</div><div><div class="mn">Leaving Japan</div><div class="mm">Move-out, pension refund, closing up</div></div></div>
+      <h1 class="big serif" style="font-size:21px">What's changed?</h1>
+      <p class="lede">We'll reshape your dashboard.</p>
+      <div class="tile" onclick="pickMoment('settle')"><div class="ti">🛬</div><div><div class="tn">Settling in</div></div></div>
+      <div class="tile" onclick="pickMoment('renew')"><div class="ti">🛂</div><div><div class="tn">My visa is expiring</div></div></div>
+      <div class="tile" onclick="pickMoment('grad')"><div class="ti">🎓</div><div><div class="tn">Graduating with a job</div></div></div>
     </div>
-  </div><!-- /screen-wrap -->
-</div><!-- /device -->
+  </div>
+</div>
 
 <!-- university desktop -->
 <div class="deskwrap" id="deskwrap">
   <div class="desk">
-    <div class="dtop"><div style="font-weight:800">nyuu<span style="color:var(--orange)">ly</span> Compass · University Admin</div><div style="font-size:13px;color:#9fb0d8">Temple University Japan (TUJ) · Global Office</div></div>
+    <div class="dtop"><div style="font-weight:800">nyuu<span style="color:var(--orange)">ly</span> · University Admin</div><div style="font-size:13px;color:#9fb0d8">Temple University Japan · Global Office</div></div>
     <div class="dbody">
-      <div class="dside"><div class="on">📊 Overview</div><div>👥 Students</div><div>🔔 Alerts</div><div>📑 Reports</div><div>⚙️ Settings</div></div>
+      <div class="dside"><div class="on">📊 Overview</div><div>👥 Students</div><div>🔔 Alerts</div><div>📑 Reports</div></div>
       <div class="dmain">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
-          <div><div style="font-size:18px;font-weight:800">Students who need attention</div><div class="muted">Sorted by risk · grouped by intake · only students who shared with you.</div></div>
-          <div style="display:flex;gap:8px"><button class="btn ghost sm">⬇ CSV</button><button class="btn ghost sm">⬇ PDF</button></div>
-        </div>
-        <div style="display:flex;gap:10px;margin:14px 0">
-          <div style="flex:1;background:color-mix(in srgb,var(--red) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--red) 28%,transparent);border-radius:11px;padding:9px 12px;font-size:12.5px;color:var(--red);font-weight:700">⚠ 11 Critical</div>
-          <div style="flex:1;background:color-mix(in srgb,var(--amber) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--amber) 28%,transparent);border-radius:11px;padding:9px 12px;font-size:12.5px;color:var(--amber);font-weight:700">⏰ 4 visas expiring &lt; 30 days</div>
-          <div style="flex:1;background:color-mix(in srgb,#7c4dff 12%,var(--surface));border:1px solid color-mix(in srgb,#7c4dff 28%,transparent);border-radius:11px;padding:9px 12px;font-size:12.5px;color:#7c4dff;font-weight:700">🎓 9 graduating soon</div>
-        </div>
+        <div style="font-size:18px;font-weight:800">Students who need attention</div>
+        <div class="muted" style="margin-bottom:14px">Sorted by risk · only students who shared with you.</div>
         <div class="kpis">
           <div class="kpi g"><div class="n">78</div><div class="l">On track</div></div>
           <div class="kpi a"><div class="n">31</div><div class="l">At risk</div></div>
@@ -710,21 +626,18 @@ td{padding:12px 13px;border-top:1px solid var(--line)}
           <div class="kpi"><div class="n">120<span style="font-size:14px;color:var(--ink2)"> / 138</span></div><div class="l">Sharing</div></div>
         </div>
         <table>
-          <tr><th>Student</th><th>Score</th><th>Key sections</th><th>Moment</th><th>Status</th><th></th></tr>
-          <tr><td colspan="6" style="background:var(--surface2);font-size:11px;font-weight:800;color:var(--ink2);letter-spacing:.4px">2026 SPRING INTAKE</td></tr>
-          <tr><td>Chen Wei</td><td><b>34%</b></td><td><span class="no">CH ✗ MN ✗</span></td><td>Settling in</td><td><span class="stat crit">Critical</span></td><td><button class="btn ghost sm">🔔 Nudge</button></td></tr>
-          <tr><td>Kim Minseo</td><td>61%</td><td><span class="ns">CH —</span> <span class="yes">MN ✓</span></td><td>🎓 Graduating</td><td><span class="stat risk">At risk</span></td><td><button class="btn ghost sm">🔔 Nudge</button></td></tr>
-          <tr><td>Nguyen Anh Minh</td><td>92%</td><td><span class="yes">CH ✓ MN ✓</span></td><td>🛂 Renewing</td><td><span class="stat ok">On track</span></td><td><button class="btn ghost sm">🔔 Nudge</button></td></tr>
-          <tr><td colspan="6" style="background:var(--surface2);font-size:11px;font-weight:800;color:var(--ink2);letter-spacing:.4px">2025 AUTUMN INTAKE</td></tr>
-          <tr><td>Singh Arjun</td><td>67%</td><td><span class="yes">CH ✓</span> <span class="ns">MN —</span></td><td>🎓 Graduating</td><td><span class="stat risk">At risk</span></td><td><button class="btn ghost sm">🔔 Nudge</button></td></tr>
-          <tr><td>Rahman Aisha</td><td>88%</td><td><span class="yes">CH ✓ MN ✓</span></td><td>Settling in</td><td><span class="stat ok">On track</span></td><td><button class="btn ghost sm">🔔 Nudge</button></td></tr>
+          <tr><th>Student</th><th>Score</th><th>Moment</th><th>Status</th><th></th></tr>
+          <tr><td>Chen Wei</td><td><b>34%</b></td><td>Settling in</td><td><span class="stat crit">Critical</span></td><td><button class="btn ghost" style="width:auto;padding:8px 13px">🔔 Nudge</button></td></tr>
+          <tr><td>Kim Minseo</td><td>61%</td><td>🎓 Graduating</td><td><span class="stat risk">At risk</span></td><td><button class="btn ghost" style="width:auto;padding:8px 13px">🔔 Nudge</button></td></tr>
+          <tr><td>Nguyen Anh Minh</td><td>92%</td><td>🛂 Renewing</td><td><span class="stat ok">On track</span></td><td><button class="btn ghost" style="width:auto;padding:8px 13px">🔔 Nudge</button></td></tr>
+          <tr><td>Rahman Aisha</td><td>88%</td><td>Settling in</td><td><span class="stat ok">On track</span></td><td><button class="btn ghost" style="width:auto;padding:8px 13px">🔔 Nudge</button></td></tr>
         </table>
-        <div class="muted" style="margin-top:10px">You only ever see the sections a student chose to share. "Moment" reflects each student's current life stage. Single admin login for the pilot; staff can nudge &amp; export, never edit student data.</div>
+        <div class="muted" style="margin-top:10px">You only see what students share. "Moment" shows each student's current life stage.</div>
       </div>
     </div>
   </div>
 </div>
-</div><!-- /stage -->
+</div>
 
 <!-- demo menu -->
 <div class="menu-mask" id="menuMask" onclick="closeMenu()"></div>
@@ -732,21 +645,23 @@ td{padding:12px 13px;border-top:1px solid var(--line)}
   <div style="display:flex;justify-content:space-between;align-items:center"><b>Jump to a screen</b><button class="iconbtn" onclick="closeMenu()">✕</button></div>
   <h4>Onboarding</h4>
   <button class="mi" onclick="jump('signup')">Sign up · OTP</button>
-  <button class="mi" onclick="jump('profile')">Profile setup</button>
+  <button class="mi" onclick="jump('setup')">Setup · scan card</button>
+  <button class="mi" onclick="jump('profile')">Profile</button>
+  <button class="mi" onclick="jump('journey')">Where are you?</button>
   <h4>Adaptive dashboard</h4>
   <button class="mi" onclick="jump('home','settle')">Home · Settling in</button>
   <button class="mi" onclick="jump('home','renew')">Home · Visa renewal</button>
   <button class="mi" onclick="jump('home','grad')">Home · Graduating → work</button>
-  <button class="mi" onclick="jump('section')">Section detail · City Hall</button>
-  <h4>Form filling &amp; Decoder</h4>
+  <button class="mi" onclick="jump('section')">Section · City Hall</button>
+  <h4>Forms &amp; Decoder</h4>
   <button class="mi" onclick="jump('fupload')">Fill a form</button>
-  <button class="mi" onclick="jump('freview')">Auto-fill review</button>
+  <button class="mi" onclick="jump('freview')">Review</button>
   <button class="mi" onclick="jump('foutput')">PDF output</button>
-  <button class="mi" onclick="jump('decoder')">Document Decoder</button>
+  <button class="mi" onclick="jump('decoder')">Decoder</button>
   <h4>Sharing</h4>
-  <button class="mi" onclick="jump('share')">Share settings</button>
-  <button class="mi" onclick="jump('revoke')">Revoke access</button>
-  <button class="mi" onclick="jump('viewer')">Viewer (read-only)</button>
+  <button class="mi" onclick="jump('share')">Share</button>
+  <button class="mi" onclick="jump('revoke')">Revoke</button>
+  <button class="mi" onclick="jump('viewer')">Viewer</button>
   <h4>Account</h4>
   <button class="mi" onclick="jump('profile-app')">Profile / settings</button>
   <h4>University (desktop)</h4>
@@ -760,89 +675,76 @@ var TABS=[
   ['decoder','Decode','<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>'],
   ['profile-app','Profile','<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3.5-6 7-6s7 2 7 6"/></svg>']
 ];
-function buildTabs(){
-  document.querySelectorAll('[data-tabs]').forEach(function(bar){
-    bar.innerHTML=TABS.map(function(t){return '<div class="tab" data-go="'+t[0]+'">'+t[2]+'<span>'+t[1]+'</span></div>';}).join('');
-    bar.querySelectorAll('.tab').forEach(function(tab){tab.onclick=function(){go(tab.getAttribute('data-go'));};});
-  });
-}
-var current='home';
+var TABVIEWS=TABS.map(function(t){return t[0];});
+document.getElementById('tabbar').innerHTML=TABS.map(function(t){return '<div class="tab" data-go="'+t[0]+'">'+t[2]+'<span>'+t[1]+'</span></div>';}).join('');
+document.querySelectorAll('#tabbar .tab').forEach(function(tab){tab.onclick=function(){go(tab.getAttribute('data-go'));};});
+
+var current='home', verified=false;
 function go(id){
   hideDesk();
-  var cur=document.querySelector('.view.active');
-  var next=document.getElementById('v-'+id);
+  var cur=document.querySelector('.view.active'); var next=document.getElementById('v-'+id);
   if(!next) return;
-  if(cur && cur!==next){cur.classList.remove('active');}
-  next.classList.add('active');
-  next.scrollTop=0;
-  current=id;
-  // sync tab highlight
-  document.querySelectorAll('[data-tabs] .tab').forEach(function(t){
-    t.classList.toggle('on', t.getAttribute('data-go')===id);
-  });
-  if(id==='revoke'){var c=document.getElementById('revC'),d=document.getElementById('revD');if(c&&d){c.style.display='block';d.style.display='none';}}
-  if(id==='decoder'){var r=document.getElementById('decRes'),s=document.getElementById('decScan');if(r&&s){r.style.display='none';s.style.display='block';}}
+  if(cur&&cur!==next) cur.classList.remove('active');
+  next.classList.add('active'); next.scrollTop=0; current=id;
+  // single fixed tab bar
+  var bar=document.getElementById('tabbar');
+  var show=TABVIEWS.indexOf(id)>=0;
+  bar.classList.toggle('show',show);
+  document.querySelectorAll('#tabbar .tab').forEach(function(t){t.classList.toggle('on',t.getAttribute('data-go')===id);});
+  // transient resets
+  if(id==='revoke'){document.getElementById('revC').style.display='block';document.getElementById('revD').style.display='none';}
+  if(id==='decoder'){document.getElementById('decRes').style.display='none';document.getElementById('decScan').style.display='block';}
 }
 function jump(id,m){closeMenu();if(m)setMoment(m);go(id);}
 
+/* setup: scan vs manual */
+function chooseSetup(scan){
+  verified=scan;
+  if(scan){ loadThen('Reading your My Number Card…','profile',applyVerify); }
+  else { applyVerify(); go('profile'); }
+}
+function applyVerify(){
+  document.getElementById('verBadge').style.display=verified?'inline-flex':'none';
+  document.getElementById('verNudge').style.display=verified?'none':'flex';
+  document.getElementById('profVer').style.display=verified?'inline-flex':'none';
+}
+
+/* journey setup */
+var chosenMoment='settle';
+function selJourney(el){
+  document.querySelectorAll('#v-journey .tile').forEach(function(t){t.classList.remove('sel');});
+  el.classList.add('sel'); chosenMoment=el.getAttribute('data-moment');
+  document.getElementById('doneBlock').style.display = chosenMoment==='settle' ? 'block':'none';
+}
+function finishJourney(){ setMoment(chosenMoment); go('home'); }
+
 /* moments */
 function setMoment(m){
-  document.querySelectorAll('.moment-panel').forEach(function(p){p.style.display = p.getAttribute('data-m')===m ? 'block':'none';});
-  // adjust score note tone
-  var notes={settle:'3 mandatory items left. Finish them to reach 100%.',renew:'Renewal in progress — keep your score up while you switch status.',grad:'Almost there — complete your change of status before graduation.'};
+  document.querySelectorAll('.moment-panel').forEach(function(p){p.style.display=p.getAttribute('data-m')===m?'block':'none';});
+  var notes={settle:'3 steps to 100%',renew:'Keep your score up while you renew',grad:'Finish before graduation'};
   var sn=document.getElementById('scoreNote'); if(sn) sn.textContent=notes[m]||notes.settle;
 }
-function pickMoment(m,el){
-  document.querySelectorAll('.moment').forEach(function(x){x.classList.remove('sel');});
-  if(el)el.classList.add('sel');
-  setMoment(m);
-  closeSheet();
-  go('home');
-}
+function pickMoment(m){closeSheet();setMoment(m);go('home');}
 function openSheet(){document.getElementById('sheetMask').classList.add('show');document.getElementById('sheet').classList.add('show');}
 function closeSheet(){document.getElementById('sheetMask').classList.remove('show');document.getElementById('sheet').classList.remove('show');}
 
-/* tasks + score ring */
-var R=33, CIRC=2*Math.PI*R;
-function setRing(pct){
-  var arc=document.getElementById('ringArc');
-  if(arc){arc.setAttribute('stroke-dasharray',CIRC);arc.setAttribute('stroke-dashoffset',CIRC*(1-pct/100));}
-  var p=document.getElementById('ringPct'); if(p)p.textContent=Math.round(pct)+'%';
-}
-function toggleTask(el){
-  el.classList.toggle('on');
-  // recompute mandatory completion in the City Hall list for live score feel
-  recompute();
-}
+/* ring + tasks */
+var R=31, CIRC=2*Math.PI*R;
+function setRing(pct){var a=document.getElementById('ringArc');if(a){a.setAttribute('stroke-dasharray',CIRC);a.setAttribute('stroke-dashoffset',CIRC*(1-pct/100));}var p=document.getElementById('ringPct');if(p)p.textContent=Math.round(pct)+'%';}
+function toggleTask(el){ el.classList.toggle('on'); recompute(); }
 function recompute(){
   var list=document.getElementById('taskList'); if(!list)return;
-  var must=list.querySelectorAll('.tag.must'); var done=0,total=must.length;
-  must.forEach(function(tag){var chk=tag.closest('.task').querySelector('.chk');if(chk.classList.contains('on'))done++;});
-  // base 71% mapped to mandatory done (2 of 2 -> nudges up)
-  var pct=Math.round(55 + (done/total)*45);
-  setRing(pct);
-  var cc=document.getElementById('chCount'); if(cc){var allc=list.querySelectorAll('.chk');var d2=0;allc.forEach(function(c){if(c.classList.contains('on'))d2++;});cc.textContent=d2+'/'+allc.length;}
+  var all=list.querySelectorAll('.chk'),d=0; all.forEach(function(c){if(c.classList.contains('on'))d++;});
+  var cc=document.getElementById('chCount'); if(cc)cc.textContent=d+'/'+all.length;
+  setRing(Math.round(45+(d/all.length)*55));
 }
-
 /* loading + confetti */
-function loadThen(txt,view,cb){
-  var l=document.getElementById('loading'); document.getElementById('loadingTxt').textContent=txt; l.classList.add('show');
-  setTimeout(function(){l.classList.remove('show'); if(view)go(view); if(cb)cb();},1100);
-}
-function fireConfetti(){
-  var c=document.getElementById('confetti'); var cols=['#2A3CCA','#366CFF','#FFA555','#0FB36B','#7c4dff'];
-  for(var i=0;i<70;i++){var d=document.createElement('div');d.className='cf';d.style.left=Math.random()*100+'%';
-    d.style.background=cols[i%cols.length];d.style.animationDuration=(2+Math.random()*1.6)+'s';d.style.animationDelay=(Math.random()*.4)+'s';
-    d.style.transform='rotate('+Math.random()*360+'deg)';c.appendChild(d);}
-  setTimeout(function(){c.innerHTML='';},3600);
-}
-
-/* theme */
-function toggleTheme(){
-  var r=document.documentElement; var dark=r.getAttribute('data-theme')==='dark';
-  r.setAttribute('data-theme',dark?'light':'dark');
-  document.getElementById('themeBtn').textContent=dark?'◐ Dark':'◐ Light';
-}
+function loadThen(txt,view,cb){var l=document.getElementById('loading');document.getElementById('loadingTxt').textContent=txt;l.classList.add('show');
+  setTimeout(function(){l.classList.remove('show');if(view)go(view);if(cb)cb();},1050);}
+function fireConfetti(){var c=document.getElementById('confetti'),cols=['#2A3CCA','#4a5cf0','#FFA555','#12b67a','#7c5cff'];
+  for(var i=0;i<60;i++){var d=document.createElement('div');d.className='cf';d.style.left=Math.random()*100+'%';d.style.background=cols[i%cols.length];
+  d.style.animationDuration=(2+Math.random()*1.5)+'s';d.style.animationDelay=(Math.random()*.4)+'s';c.appendChild(d);}
+  setTimeout(function(){c.innerHTML='';},3500);}
 
 /* menu + desktop */
 function openMenu(){document.getElementById('menuMask').classList.add('show');document.getElementById('menu').classList.add('show');}
@@ -853,32 +755,30 @@ function hideDesk(){var d=document.getElementById('deskwrap');if(d.classList.con
 /* guided demo */
 var demoSteps=[
   function(){go('signup');},
-  function(){var o=document.getElementById('otp');o.style.display='block';},
-  function(){go('profile');},
-  function(){setMoment('settle');go('home');},
+  function(){document.querySelector('#v-signup .btn.primary').click();},
+  function(){go('setup');},
+  function(){chooseSetup(true);},
+  function(){go('journey');},
+  function(){finishJourney();},
   function(){go('section');},
   function(){go('fupload');},
-  function(){loadThen('Reading your form…','freview');},
+  function(){loadThen('Loading template…','freview');},
   function(){loadThen('Generating your PDF…','foutput',fireConfetti);},
-  function(){go('decoder');document.getElementById('decScan').click();},
   function(){setMoment('renew');go('home');},
   function(){setMoment('grad');go('home');},
   function(){go('share');},
   function(){go('viewer');}
 ];
-var demoRunning=false,demoTimer=null;
+var demoOn=false,demoT=null;
 function playDemo(){
-  if(demoRunning){demoRunning=false;clearTimeout(demoTimer);document.querySelector('.tbtn.play').textContent='▶ Play demo';return;}
-  demoRunning=true;document.querySelector('.tbtn.play').textContent='⏸ Stop demo';
-  var i=0;
-  (function nextStep(){
-    if(!demoRunning||i>=demoSteps.length){demoRunning=false;document.querySelector('.tbtn.play').textContent='▶ Play demo';return;}
-    demoSteps[i]();i++;demoTimer=setTimeout(nextStep,1900);
-  })();
+  if(demoOn){demoOn=false;clearTimeout(demoT);document.querySelector('.tbtn.play').textContent='▶ Play demo';return;}
+  demoOn=true;document.querySelector('.tbtn.play').textContent='⏸ Stop';var i=0;
+  (function step(){if(!demoOn||i>=demoSteps.length){demoOn=false;document.querySelector('.tbtn.play').textContent='▶ Play demo';return;}
+   demoSteps[i]();i++;demoT=setTimeout(step,1850);})();
 }
 
 /* init */
-buildTabs(); setRing(71); setMoment('settle'); go('home');
+setRing(71); setMoment('settle'); applyVerify(); go('home');
 </script>
 </body>
 </html>
